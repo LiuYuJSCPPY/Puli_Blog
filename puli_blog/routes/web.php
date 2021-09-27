@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttractionControll;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('admin',AttractionControll::class);
+
+Route::get('admim/attraction/{post_id}/create',[AttractionControll::class,'AttractionsCreate'])->name('attraction.create');
+Route::get('admim/attraction/{post_id}/img/create',[AttractionControll::class,'AttractionsImgCreate'])->name('AttractionImg.create');
+Route::post('admim/attraction/{post_id}/store',[AttractionControll::class,'AttractionsStore'])->name('attraction.store');
+Route::post('admim/attraction/{post_id}/img/create',[AttractionControll::class,'AttractionsImgStore'])->name('attractionImg.Store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

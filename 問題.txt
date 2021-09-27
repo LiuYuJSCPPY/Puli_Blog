@@ -1,0 +1,5 @@
+
+
+
+
+圖檔解決的方法:在PHP.ini擴充大小 upload_max_filesize = 40M
