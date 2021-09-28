@@ -134,6 +134,9 @@ class AttractionControll extends Controller
     public function show($id)
     {
         //
+        $attraction = Attractions::find($id);
+
+        return view('Backadmin.AttractionsControll.show',['attraction' => $attraction]);
     }
 
     /**
