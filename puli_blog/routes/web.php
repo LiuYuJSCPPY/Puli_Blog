@@ -17,12 +17,23 @@ use App\Http\Controllers\AttractionControll;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('admin',AttractionControll::class);
 
-Route::get('admim/attraction/{post_id}/create',[AttractionControll::class,'AttractionsCreate'])->name('attraction.create');
-Route::get('admim/attraction/{post_id}/img/create',[AttractionControll::class,'AttractionsImgCreate'])->name('AttractionImg.create');
-Route::post('admim/attraction/{post_id}/store',[AttractionControll::class,'AttractionsStore'])->name('attraction.store');
-Route::post('admim/attraction/{post_id}/img/create',[AttractionControll::class,'AttractionsImgStore'])->name('attractionImg.Store');
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    // 景點
+    Route::resource('attraction',AttractionControll::class);
+    // 新增
+    Route::get('attraction/{post_id}/create',[AttractionControll::class,'attractionMaterialCreate'])->name('attractionMaterial.create');
+    Route::get('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgCreate'])->name('AttractionImg.create');
+    Route::post('attraction/{post_id}/store',[AttractionControll::class,'attractionMaterialStore'])->name('attractionMaterial.store');
+    Route::post('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgStore'])->name('attractionImg.Store');
+    // 更新
+    Route::get('attraction/{post_id}/edit',[AttractionControll::class,'attractionMaterialEdit'])->name('attractionMaterial.create');
+    Route::get('attraction/{post_id}/img/edit',[AttractionControll::class,'AttractionImgEdit'])->name('AttractionImg.create');
+    Route::put('attraction/{post_id}/store',[AttractionControll::class,'attractionMaterialUpdate'])->name('attractionMaterial.store');
+    Route::put('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgUpdate'])->name('attractionImg.Store');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

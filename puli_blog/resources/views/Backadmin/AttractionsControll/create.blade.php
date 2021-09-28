@@ -24,9 +24,9 @@
                                         <i class="icofont icofont-home"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">景點文章</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.index')}}">景點文章</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.create')}}">景點基本資料</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.create')}}">景點基本資料</a>
                                 </li>
                             </ul>
                         </div>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="card-block">
 
-                                    <form method="post" action="{{ route('admin.store') }}">
+                                    <form method="post" action="{{ route('admin.attraction.store') }}">
                                         @csrf
                                         <input type="hidden" name="post_categroy_id" value="1">
                                         <div class="form-group row">

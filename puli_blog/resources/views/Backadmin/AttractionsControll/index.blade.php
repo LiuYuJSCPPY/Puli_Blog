@@ -108,7 +108,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>景點所有資料</h5>
-                            <a href="{{ route('admin.create') }}" class="btn btn-mat btn-primary ">+ 新增資料</a>
+                            <a href="{{ route('admin.attraction.create') }}" class="btn btn-mat btn-primary ">+ 新增資料</a>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">

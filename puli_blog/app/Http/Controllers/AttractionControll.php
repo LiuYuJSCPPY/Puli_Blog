@@ -36,7 +36,7 @@ class AttractionControll extends Controller
     }
 
 
-    public function AttractionsCreate($id){
+    public function attractionMaterialCreate($id){
             $attraction = Attractions::findOrFail($id);
             $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
 
@@ -44,10 +44,11 @@ class AttractionControll extends Controller
         }
 
 
-    public function AttractionsImgCreate($id){
+    public function AttractionImgCreate($id){
         $attraction = attractions::find($id);
+        $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
 
-        return view('Backadmin.AttractionsControll.AttracionsImgCreate',['attraction' => $attraction]);
+        return view('Backadmin.AttractionsControll.AttracionsImgCreate',['attraction' => $attraction,'imgs' => $imgs]);
     }
     /**
      * Store a newly created resource in storage.
@@ -75,7 +76,7 @@ class AttractionControll extends Controller
     }
 
 
-    public function AttractionsStore($id ,Request $request){
+    public function attractionMaterialStore($id ,Request $request){
         $attraction = Attractions::find($id);
 
 
@@ -94,8 +95,8 @@ class AttractionControll extends Controller
 
     }
 
-    public function AttractionsImgStore($id ,Request $request){
-        $attraction = Attractions::find($id);
+    public function AttractionImgStore($id ,Request $request){
+            $attraction = Attractions::find($id);
 
             $name = $request->input('name');
 
@@ -113,7 +114,7 @@ class AttractionControll extends Controller
                 Attractions_img::create([
                     'name' => $name,
                     'path_img' => asset(Storage::disk('public')->url($Imgpath)),
-                    'Attractions_id' => $attraction->id,
+                    'attractions_id' => $attraction->id,
                     ]);
 
                 return back();
@@ -146,6 +147,21 @@ class AttractionControll extends Controller
         //
     }
 
+    public function attractionMaterialEdit($id){
+        $attraction = Attractions::findOrFail($id);
+        $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
+
+        return view('Backadmin.AttractionsControll.AttractionsUpdate',['attractions' => $attraction,'attractions_price' => $attractions_price]);
+    }
+
+
+    public function AttractionImgEdit($id){
+    $attraction = attractions::find($id);
+    $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+
+    return view('Backadmin.AttractionsControll.AttracionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -158,6 +174,20 @@ class AttractionControll extends Controller
         //
     }
 
+    // public function attractionMaterialUpdate($id){
+    //     $attraction = Attractions::findOrFail($id);
+    //     $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
+
+    //     return view('Backadmin.AttractionsControll.AttractionsUpdate',['attractions' => $attraction,'attractions_price' => $attractions_price]);
+    // }
+
+
+    // public function AttractionImgUpdate($id){
+    // $attraction = attractions::find($id);
+    // $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+
+    // return view('Backadmin.AttractionsControll.AttracionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
+    // }
     /**
      * Remove the specified resource from storage.
      *

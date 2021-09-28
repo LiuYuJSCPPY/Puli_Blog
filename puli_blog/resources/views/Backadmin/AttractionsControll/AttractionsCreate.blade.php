@@ -25,9 +25,9 @@
                                         <i class="icofont icofont-home"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">景點文章</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.index')}}">景點文章</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.create')}}">景點基本資料</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attractionMaterial.create',['post_id' =>  $attractions->id  ])}}">景點基本資料</a>
                                 </li>
                             </ul>
                         </div>
@@ -94,7 +94,7 @@
 
                                 <div class="card-block">
 
-                                    <form method="post" action="{{ route('attraction.store',['post_id' => $attractions->id]) }}">
+                                    <form method="post" action="{{ route('admin.attractionMaterial.store',['post_id' => $attractions->id]) }}">
                                         @csrf
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">名稱:</label>
@@ -112,7 +112,7 @@
 
                                             <button class="btn btn-mat btn-primary " type="submit">送出</button>
                                             <button class="btn btn-mat btn-danger " type="reset" >重新填寫</button>
-                                            <a class="btn btn-mat btn-success " href="{{route('AttractionImg.create',['post_id' => $attractions->id])}}" >下一步</a>
+                                            <a class="btn btn-mat btn-success " href="{{route('admin.AttractionImg.create',['post_id' => $attractions->id])}}" >下一步</a>
 
                                         </form>
                                     </div>

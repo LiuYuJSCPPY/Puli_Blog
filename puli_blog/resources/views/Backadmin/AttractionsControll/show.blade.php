@@ -1,8 +1,6 @@
-@extends('Backadmin.layout')
+@extends('layout')
 
-
-@section('show')
-
+@sections('show')
 <div class="pcoded-inner-content">
     <!-- Main-body start -->
     <div class="main-body">
@@ -101,39 +99,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card-block">
-
-                                    <form method="post" action="{{ route('admin.attractionImg.Store',['post_id' => $attraction->id]) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">名稱:</label>
-                                            <div class="col-sm-4">
-                                                <input type="text"  name="name" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">檔案:</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="imgpath" id="">
-
-                                            </div>
-                                        </div>
-
-                                            <button class="btn btn-mat btn-primary " type="submit">送出</button>
-                                            <button class="btn btn-mat btn-danger " type="reset" >重新填寫</button>
-                                            <a class="btn btn-mat btn-success " href="" >下一步</a>
-
-                                        </form>
-                                    </div>
-                                    @if ($message = Session::get('test'))
-                                        <div class="alert alert-success">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @endif
-
-                                </div>
 
 
 
-@endsection
+@endsections
