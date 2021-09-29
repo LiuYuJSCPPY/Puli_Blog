@@ -27,11 +27,15 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgCreate'])->name('AttractionImg.create');
     Route::post('attraction/{post_id}/store',[AttractionControll::class,'attractionMaterialStore'])->name('attractionMaterial.store');
     Route::post('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgStore'])->name('attractionImg.Store');
+
     // 更新
-    Route::get('attraction/{post_id}/edit',[AttractionControll::class,'attractionMaterialEdit'])->name('attractionMaterial.create');
-    Route::get('attraction/{post_id}/img/edit',[AttractionControll::class,'AttractionImgEdit'])->name('AttractionImg.create');
-    Route::put('attraction/{post_id}/store',[AttractionControll::class,'attractionMaterialUpdate'])->name('attractionMaterial.store');
-    Route::put('attraction/{post_id}/img/create',[AttractionControll::class,'AttractionImgUpdate'])->name('attractionImg.Store');
+    Route::get('attraction/{post_id}/Material/{M_id}/edit',[AttractionControll::class,'attractionMaterialEdit'])->name('attractionMaterial.edit');
+    Route::put('attraction/Material/{post_id}/Material/{M_id}/Update',[AttractionControll::class,'attractionMaterialUpdate'])->name('attractionMaterial.update');
+
+    // 圖片
+    Route::get('attraction/Img/{post_id}',[AttractionControll::class,'AttractionImg'])->name('AttractionImgs');
+    Route::get('attraction/Img/{post_id}/img/{M_id}/edit',[AttractionControll::class,'AttractionImgEdit'])->name('AttractionImg.edit');
+    Route::put('attraction/Img/{post_id}/img/{M_id}/Update',[AttractionControll::class,'AttractionImgUpdate'])->name('attractionImg.update');
 });
 
 

@@ -126,43 +126,41 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        @foreach($Attractions as $attraction)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <th>臺中國家歌劇院 National Taichung Theater</th>
-                                            <th>4101</th>
-                                            <th>圖檔</th>
-                                            <th>細微資料</th>
+
+
+                                            <th scope="row">{{$attraction->id}}</th>
+                                            <th>{{$attraction->name}}</th>
+
+                                                @if( count($attraction->Attraction_img) ===0)
+                                                 <th>上沒有圖案</th>
+                                                @else
+                                                   <th> 有 </th>
+                                                @endif
+
+                                                @if( count($attraction->Attraction_price) ===0)
+                                                 <th>上沒有資料</th>
+                                                @else
+                                                   <th> 有 </th>
+                                                @endif
+
+                                                @if( $attraction->display ===1)
+                                                    <th>顯示文章</th>
+                                                @else
+                                                    <th>未顯示文章</th>
+                                                @endif
                                             <th>
-                                                <a href="" class="btn btn-primary">顯示</a>
-                                                <a href="" class="btn btn-warning">更新</a>
+                                                <a href="{{ route('admin.attraction.show',['attraction' => $attraction->id]) }}" class="btn btn-primary">查看</a>
+                                                <a href="{{ route('admin.attraction.edit',['attraction' => $attraction->id ]) }}" class="btn btn-warning">更新</a>
                                                 <a href="" class="btn btn-danger">刪除</a>
                                             </th>
+
                                         </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <th>臺中國家歌劇院 National Taichung Theater</th>
-                                            <th>4101</th>
-                                            <th>圖檔</th>
-                                            <th>細微資料</th>
-                                            <th>
-                                                <a href="" class="btn btn-primary"> 11</a>
-                                                <a href="" class="btn btn-primary"> 11</a>
-                                                <a href="" class="btn btn-primary"> 11</a>
-                                                <a href="" class="btn btn-primary"> 11</a>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @endforeach
+
+
                                     </tbody>
                                 </table>
                             </div>

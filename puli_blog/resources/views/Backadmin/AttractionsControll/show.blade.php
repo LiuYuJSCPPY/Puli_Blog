@@ -5,7 +5,6 @@
 
 @php
 
-
     $attraction->Attraction_price ? $attraction_prices = $attraction->Attraction_price  : [] ;
     $attraction->Attraction_img ? $Attraction_imgs = $attraction->Attraction_img : $Attraction_imgs= [] ;
 @endphp
@@ -22,11 +21,11 @@
                         <div class="page-header-title">
                             <i class="icofont icofont-file-code bg-c-blue"></i>
                             <div class="d-inline">
-                                <h4>景點圖片</h4>
+                                <h4>景點新增圖片</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                <div class="col-lg-4">
                         <div class="page-header-breadcrumb">
                             <ul class="breadcrumb-title">
                                 <li class="breadcrumb-item">
@@ -52,7 +51,6 @@
                         <div class="card">
                             <div class="card-header">
                             <h4>景點基本資料</h4>
-                            <h5>可以不寫</h5>
                                 <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
 
                                     <div class="card-header-right">
@@ -99,8 +97,25 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">圖片:</label>
+                                        <div class="col-sm-4">
+                                            @if( count($Attraction_imgs) == 0 )
+                                            <p>
+                                                尚未有圖片
+                                            </p>
 
-                                    @if(isset($Attraction_imgs ))
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    @if( count($Attraction_imgs) != 0 )
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">圖檔:</label>
+                                        <div class="col-sm-4">
+                                        <a href="{{ route('admin.AttractionImgs',['post_id' => $attraction->id]) }}" class="btn btn-primary">圖片庫</a>
+                                        </div>
+                                    </div>
                                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                         <div class="carousel-inner">
                                             <!-- 再編會發生Array是空值時，PHP還去抓Array_Key而導致 Undefined array key 0 的訊息，所以這邊需要使用 [@] 來作為可忽略的元件-->
@@ -125,12 +140,14 @@
                                             <span class="visually-hidden">Next</span>
                                         </button>
                                     </div>
+
                                     @endif
 
                                     @if($attraction_prices != null)
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5>景點表格價位</h5>
+                                                <a href="{{ route('admin.attractionMaterial.create',['post_id' => $attraction->id]) }}" class="btn btn-primary">新增價位</a>
 
                                             </div>
                                             <div class="card-block table-border-style">
@@ -152,6 +169,7 @@
                                                                 <th scope="row">{{ $price->id}}</th>
                                                                 <td>{{ $price->name }}</td>
                                                                 <td>{{ $price->price }}</td>
+                                                                <td><a href="{{ route('admin.attractionMaterial.edit',['post_id' => $price->Attractions->id , 'M_id' => $price->id]) }}"> 更新</a> </td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>

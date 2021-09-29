@@ -20,6 +20,8 @@ class AttractionControll extends Controller
     {
         //
         $Attractions = Attractions::all();
+
+
         return view('Backadmin.AttractionsControll.index',['Attractions' => $Attractions]);
     }
 
@@ -63,16 +65,19 @@ class AttractionControll extends Controller
         //
 
         $all = $request->all();
-        $attractions = Attractions::create($all);
-        if ($attractions->id && $request->hasAny('user_id')){
+        if( isset($all['name']) ){
+            $attractions = Attractions::create($all);
+            if ($attractions->id && $request->hasAny('user_id')){
             post::create([
                 'user_id' => $request->input('user_id'),
                 'post_categroy_id' => $request->input('post_categroy_id'),
                 'artice_id' => $attractions->id,
             ]);
+            }
+
+            return redirect()->route('attraction.create',["post_id" => $attractions->id]);
         }
 
-        return redirect()->route('attraction.create',["post_id" => $attractions->id]);
     }
 
 
@@ -148,21 +153,35 @@ class AttractionControll extends Controller
     public function edit($id)
     {
         //
+        $attraction = Attractions::findOrFail($id);
+        return view('Backadmin.AttractionsControll.edit',['Attraction' => $attraction]);
+
     }
 
-    public function attractionMaterialEdit($id){
-        $attraction = Attractions::findOrFail($id);
+    public function attractionMaterialEdit($post_id,$id){
+        $attraction = Attractions::findOrFail($post_id);
+        $attraction_M = Attractions_price::findOrFail($id);
         $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
 
-        return view('Backadmin.AttractionsControll.AttractionsUpdate',['attractions' => $attraction,'attractions_price' => $attractions_price]);
+        return view('Backadmin.AttractionsControll.AttractionsUpdate',['attractions' => $attraction,'attractions_price' => $attractions_price, 'attraction_M' => $attraction_M]);
     }
 
 
-    public function AttractionImgEdit($id){
-    $attraction = attractions::find($id);
-    $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+    // 設定該文章圖庫
+    public function AttractionImg($post_id){
+        $attraction = Attractions::findOrFail($post_id);
+        $Imgs=  Attractions_img::where('attractions_id' ,'=', $post_id)->get();
 
-    return view('Backadmin.AttractionsControll.AttracionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
+        return view('Backadmin.AttractionsControll.AttractionsImg',['post_id' =>$attraction,'Imgs' => $Imgs]);
+    }
+
+
+    public function AttractionImgEdit($post_id,$id){
+    $attraction = attractions::find($post_id);
+    $imgs = Attractions_img::findOrFail($id);
+
+
+    return view('Backadmin.AttractionsControll.AttractionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
     }
 
     /**
@@ -175,22 +194,42 @@ class AttractionControll extends Controller
     public function update(Request $request, $id)
     {
         //
+        $attraction= attractions::findOrFail($id);
+
+
+        $R_attraction = $request->all();
+        $attraction->update($R_attraction);
+
+        return redirect()->route('admin.attraction.index');
     }
 
-    // public function attractionMaterialUpdate($id){
-    //     $attraction = Attractions::findOrFail($id);
-    //     $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
+    public function attractionMaterialUpdate($post_id,$id , Request $request){
 
-    //     return view('Backadmin.AttractionsControll.AttractionsUpdate',['attractions' => $attraction,'attractions_price' => $attractions_price]);
-    // }
+        if($id&&$post_id){
+            $attraction_M = Attractions_price::where('id' ,'=' ,$id)->get();
+            var_dump($request->all());
+            if( $request->hasAny(['name','price']) ){
+                $Rupdate = $request->all();
+                Attractions_price::findOrFail($id)->update($Rupdate);
+                return back()->with('成功更改');
+            }else{
+                return back()->with('更改失敗');
+            }
+
+        }else{
+            return back()->with('路由有問題');
+        }
 
 
-    // public function AttractionImgUpdate($id){
-    // $attraction = attractions::find($id);
-    // $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+    }
 
-    // return view('Backadmin.AttractionsControll.AttracionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
-    // }
+
+    public function AttractionImgUpdate($id ,Request $request){
+    $attraction = attractions::find($id);
+    $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+
+
+    }
     /**
      * Remove the specified resource from storage.
      *

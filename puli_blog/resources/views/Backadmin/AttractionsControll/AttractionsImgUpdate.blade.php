@@ -1,8 +1,8 @@
 @extends('Backadmin.layout')
 
 
-@section('show')
 
+@section('show')
 <div class="pcoded-inner-content">
     <!-- Main-body start -->
     <div class="main-body">
@@ -92,18 +92,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">圖片:</label>
+                                        <label class="col-sm-2 col-form-label">圖檔:</label>
                                         <div class="col-sm-4">
-                                            @foreach ( $imgs as $img)
-                                            <img src="{{ $img->path_img }}" alt="{{ $img->name }}" width="100%"><br>
-                                            @endforeach
+                                            <img src="{{ $imgs->path_img }}" alt="{{ $imgs->name }}" width="100%"><br>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-block">
 
-                                    <form method="post" action="{{ route('admin.attractionImg.Store',['post_id' => $attraction->id]) }}" enctype="multipart/form-data">
+                                    <form method="post" action="   " enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">名稱:</label>
