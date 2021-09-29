@@ -101,12 +101,13 @@
 
                                 <div class="card-block">
 
-                                    <form method="post" action="   " enctype="multipart/form-data">
+                                    <form method="post" action=" {{ route('admin.attractionImg.update',['post_id' => $attraction->id, 'M_id' => $imgs->id]) }}  " enctype="multipart/form-data">
                                         @csrf
+                                        @method('put')
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">名稱:</label>
                                             <div class="col-sm-4">
-                                                <input type="text"  name="name" class="form-control">
+                                                <input type="text"  name="name" class="form-control" value="{{ $imgs->name }}">
                                             </div>
                                         </div>
 
@@ -135,3 +136,4 @@
 
 
 @endsection
+

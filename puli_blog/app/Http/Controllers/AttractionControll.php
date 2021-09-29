@@ -176,10 +176,10 @@ class AttractionControll extends Controller
     }
 
 
-    public function AttractionImgEdit($post_id,$id){
+    // 顯示要更新圖片
+    public function AttractionImgEdit($post_id , $id){
     $attraction = attractions::find($post_id);
     $imgs = Attractions_img::findOrFail($id);
-
 
     return view('Backadmin.AttractionsControll.AttractionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
     }
@@ -223,11 +223,38 @@ class AttractionControll extends Controller
 
     }
 
+    // Requset 要更新的圖片
+    public function AttractionImgUpdate($post_id , $id ,Request $request){
+    $attraction = attractions::find($post_id);
 
-    public function AttractionImgUpdate($id ,Request $request){
-    $attraction = attractions::find($id);
-    $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
+    $img = Attractions_img::findOrFail($id);
 
+    // 如果有抓到name，再來判斷圖片是否又要修改
+        $Name = $request->input('name');
+        $img->update(['name' => $Name]);
+
+
+
+        // 如果有抓到圖片ID，那就要做把之前的圖片刪掉在新增新的圖片
+        if($request->file('imgpath') != null){
+
+
+            // Storage::disk('public')->delete('/Attractions/1632921820_route未加入參數值錯誤訊號.PNG');
+
+            $ImgName = time().'_'.$request->file('imgpath')->getClientOriginalName();
+
+            $ImgPath = $request->file('imgpath')->storeAs(
+                'Attractions',
+                $ImgName,
+                'public');
+            var_dump($ImgPath);
+
+            $img->update(['path_img' => asset(Storage::disk('public')->url($ImgPath))]);
+
+            return back()->with('success file!');
+        }
+
+        return back()->with('success file!');
 
     }
     /**
