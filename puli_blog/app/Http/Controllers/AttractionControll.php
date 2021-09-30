@@ -7,7 +7,9 @@ use App\Models\Attractions;
 use App\Models\post;
 use App\Models\Attractions_img;
 use App\Models\Attractions_price;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AttractionControll extends Controller
 {
@@ -19,10 +21,15 @@ class AttractionControll extends Controller
     public function index()
     {
         //
-        $Attractions = Attractions::all();
+        if(Auth::user()){
+
+            $user = Auth::user();
+            $Attractions = Attractions::all();
+
+            return view('Backadmin.AttractionsControll.index',['Attractions' => $Attractions,'user' => $user]);
+        }
 
 
-        return view('Backadmin.AttractionsControll.index',['Attractions' => $Attractions]);
     }
 
     /**
@@ -34,7 +41,11 @@ class AttractionControll extends Controller
     public function create()
     {
         //
-        return view('Backadmin.AttractionsControll.create');
+        if(Auth::user()){
+            $user = Auth::user();
+        return view('Backadmin.AttractionsControll.create',['user' => $user]);
+        }
+
     }
 
 
@@ -207,7 +218,7 @@ class AttractionControll extends Controller
 
         if($id&&$post_id){
             $attraction_M = Attractions_price::where('id' ,'=' ,$id)->get();
-            var_dump($request->all());
+
             if( $request->hasAny(['name','price']) ){
                 $Rupdate = $request->all();
                 Attractions_price::findOrFail($id)->update($Rupdate);

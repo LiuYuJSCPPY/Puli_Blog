@@ -155,7 +155,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{$user->name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -180,9 +180,27 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-normal-sign-in.html">
-                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        <a href="#">
+                                            <i class="ti-lock"></i> 是否是管理者
+                                            @if($user->is_admin === 1)
+                                            是管理者
+                                            @else
+                                            不是管理者
+                                            @endif
                                         </a>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                                <i class="ti-layout-sidebar-left"></i>{{ __('Log Out') }}</button>
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+
+                                        </form>
+
                                     </li>
                                 </ul>
                             </li>

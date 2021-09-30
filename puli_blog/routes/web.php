@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     // 景點
     Route::resource('attraction',AttractionControll::class);
     // 新增
