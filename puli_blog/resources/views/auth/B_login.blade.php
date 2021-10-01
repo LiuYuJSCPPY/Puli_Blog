@@ -96,6 +96,11 @@
                                         <button type="sumbit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
                                     </div>
                                 </div>
+
+                                <div id="fb-root">
+                                    <div class="fb-login-button" data-width="366" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                                </div>
+
                                 <hr/>
                                 <div class="row">
                                     <div class="col-md-10">
@@ -174,6 +179,27 @@
     <script type="text/javascript" src="{{ asset('assets/js/modernizr/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/modernizr/css-scrollbars.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/common-pages.js') }}"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0&appId=995251067700148&autoLogAppEvents=1" nonce="kNDixtwS"></script>
+
+    <!-- FB第三方登入 -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            appId      : '995251067700148',
+            xfbml      : true,
+            version    : 'v12.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 
 </html>
