@@ -61,37 +61,37 @@
                                 <div class="card-block">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">名稱:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <h3>{{ $attraction->name }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">地址:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <h3>{{ $attraction->add }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">營業時間:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <h3>{{ $attraction->business_time_start }} ~ {{ $attraction->business_time_end }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">公休:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <h3>{{ $attraction->public_holiday }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">官網:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                              <a href="{{  $attraction->offical }}"><h3>{{ $attraction->name }}</h3></a>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">文章:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <p>
                                             {{  $attraction->artice }}
                                             </p>
@@ -99,55 +99,24 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">圖片:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             @if( count($Attraction_imgs) == 0 )
-                                            <p>
-                                                尚未有圖片
-                                            </p>
+
+                                            <p>尚未有圖片</p>
+
+                                            @else
+
+                                            <a href="{{ route('admin.AttractionImgs',['post_id' => $attraction->id]) }}" class="btn btn-primary">圖片庫</a>
 
                                             @endif
                                         </div>
                                     </div>
 
-                                    @if( count($Attraction_imgs) != 0 )
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">圖檔:</label>
-                                        <div class="col-sm-4">
-                                        <a href="{{ route('admin.AttractionImgs',['post_id' => $attraction->id]) }}" class="btn btn-primary">圖片庫</a>
-                                        </div>
-                                    </div>
-                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <!-- 再編會發生Array是空值時，PHP還去抓Array_Key而導致 Undefined array key 0 的訊息，所以這邊需要使用 [@] 來作為可忽略的元件-->
-                                            @if( @$Attraction_imgs[0])
-                                            <div class="carousel-item active">
-                                            <img src="{{ $Attraction_imgs[0]->path_img }}" class="d-block w-100" alt="{{ $Attraction_imgs[0]->name }}" width="100%">
-                                            </div>
-                                            @endif
-                                        @foreach( $Attraction_imgs as $img )
 
-                                            <div class="carousel-item ">
-                                            <img src="{{ $img ->path_img }}" class="d-block w-100" alt="{{ $img ->name }}" width="100%">
-                                            </div>
-                                        @endforeach
-                                        </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
-
-                                    @endif
-
-                                    @if($attraction_prices != null)
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>景點表格價位</h5>
-                                                <a href="{{ route('admin.attractionMaterial.create',['post_id' => $attraction->id]) }}" class="btn btn-primary">新增價位</a>
+                                                <h5>景點表格價位:</h5>
+                                                <button type="button" href="{{ route('Material',['id' => $attraction->id]) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">前往景點價格</button>
 
                                             </div>
                                             <div class="card-block table-border-style">
@@ -158,18 +127,15 @@
                                                                 <th>id</th>
                                                                 <th>票名稱</th>
                                                                 <th>票的價錢</th>
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-
-
-
                                                             @foreach($attraction_prices as $price)
                                                             <tr>
                                                                 <th scope="row">{{ $price->id}}</th>
                                                                 <td>{{ $price->name }}</td>
                                                                 <td>{{ $price->price }}</td>
-                                                                <td><a href="{{ route('admin.attractionMaterial.edit',['post_id' => $price->Attractions->id , 'M_id' => $price->id]) }}"> 更新</a> </td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
@@ -177,13 +143,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endif
-
-
-
                                 </div>
 
-
-
-
 @endsection
+

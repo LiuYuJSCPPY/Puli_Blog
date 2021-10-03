@@ -9,7 +9,7 @@ class Attractions extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','business_time_start','business_time_end','public_holiday','add','offical','artice','display','user_id'];
+    protected $fillable = ['name','business_time_start','business_time_end','public_holiday','add','offical','artice','display'];
 
     public function Attraction_img(){
         return $this->hasMany(Attractions_img::class);

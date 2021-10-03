@@ -43,7 +43,7 @@
                         <!-- Basic Form Inputs card start -->
                         <div class="card">
                             <div class="card-header">
-                            <h4>圖片庫</h4>
+                            <h4>{{ $user->name }} 的 {{ $post_id->name }} 圖片庫</h4>
                                 <div class="card-header-right">
                                 <a href="{{ route('admin.AttractionImg.create',['post_id' => $post_id->id]) }}" class="btn btn-primary">+ 新增圖片</a>
                                 </div>

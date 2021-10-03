@@ -88,14 +88,18 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-xs-12 forgot-phone text-right">
-                                        <a href="auth-reset-password.html" class="text-right f-w-600 text-inverse"> Forgot Your Password?</a>
+
+                                        <a href="{{ route('password.request')}}" class="text-right f-w-600 text-inverse"> 忘記密碼?</a><br>
+                                        <a href="{{route('register')}}" class="text-right f-w-600 text-inverse"> 申請會員</a>
                                     </div>
+
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button type="sumbit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
                                     </div>
                                 </div>
+
 
                                 <div id="fb-root">
                                     <div class="fb-login-button" data-width="366" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>

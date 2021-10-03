@@ -56,7 +56,7 @@
                                         @csrf
                                         <input type="hidden" name="post_categroy_id" value="1">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">名稱:</label>
+                                            <label class="col-sm-2 col-form-label @error('title') is-invalid @enderror" >名稱:</label>
                                             <div class="col-sm-4">
                                                 <input type="text"  name="name" class="form-control">
                                             </div>
@@ -74,12 +74,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">使用者</label>
-                                            <div class="col-sm-3">
-                                                <input type="number" name="user_id" class="form-control">
-                                            </div>
-                                        </div>
+
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">公休:</label>
@@ -88,7 +83,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">地址:</label>
+                                            <label class="col-sm-2 col-form-label @error('title') is-invalid @enderror">地址:</label>
                                             <div class="col-sm-6">
 
                                                 <input type="text" name="add" class="form-control">
@@ -158,6 +153,10 @@
                                             </div>
                                         </div>
                                         <!-- Main-body end -->
+                                        @error('title')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
                                         <div id="styleSelector">
 
                                         </div>

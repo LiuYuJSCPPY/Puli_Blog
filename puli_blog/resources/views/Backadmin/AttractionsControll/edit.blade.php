@@ -97,22 +97,41 @@
                                         @if( count($Attraction->Attraction_img) == 0 )
                                             <a href="{{ route('admin.AttractionImg.create',['post_id' => $Attraction->id]) }}" class="btn btn-primary">新增圖片</a>
                                         @else
-                                            <p>
-                                            有(查看)
-                                            </p>
+                                            <a class="btn btn-mat btn-primary" href="{{ route('admin.AttractionImgs',['post_id' => $Attraction->id]) }}" >圖片庫</a>
                                         @endif
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">價位資料:(價位庫)</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-12">
                                         @if( count($Attraction->Attraction_price) == 0 )
                                             <a href="{{ route('admin.attractionMaterial.create',['post_id' => $Attraction->id]) }}" class="btn btn-primary">新增價位</a>
                                         @else
-                                            <p>
-                                            有(查看)
-                                            </p>
+                                            <div class="card-block table-border-style">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>id</th>
+                                                                    <th>票名稱</th>
+                                                                    <th>票的價錢</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($Attraction->Attraction_price as $price)
+                                                                <tr>
+                                                                    <th scope="row">{{ $price->id}}</th>
+                                                                    <td>{{ $price->name }}</td>
+                                                                    <td>{{ $price->price }}</td>
+
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                         @endif
                                         </div>
                                     </div>

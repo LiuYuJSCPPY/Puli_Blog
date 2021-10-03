@@ -21,4 +21,8 @@ class post extends Model
     public function AttractionsArtice(){
         return $this->belongsTo(Attractions::class,'artice_id','id');
     }
+
+    public function commet(){
+        return $this->hasMany(comment::class,'post_id','id');
+    }
 }

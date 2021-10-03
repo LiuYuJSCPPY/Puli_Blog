@@ -19,10 +19,10 @@ class CreateAttractionsTable extends Migration
             $table->time('business_time_start')->nullable();
             $table->time('business_time_end')->nullable();
             $table->string('public_holiday')->nullable();
-            $table->string('add');
+            $table->string('add')->nullable();
             $table->text('artice');
             $table->string('offical')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('display')->default(false);
             $table->timestamps();
         });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Attractions;
+use App\Models\Attractions_img;
+use Illuminate\Support\Facades\Auth;
 
 class AttractionControll extends Controller
 {
@@ -13,7 +15,12 @@ class AttractionControll extends Controller
 
         $attractions = Attractions::all();
 
-        return view('front.index',['$attractions' => $attractions]);
+        $user = Auth::user();
+
+
+
+
+        return view('front.index',['attractions' => $attractions,'user' => $user]);
     }
 
     public function show($id){
@@ -21,6 +28,11 @@ class AttractionControll extends Controller
         $attraction = Attractions::findOrFail($id);
         return view('front.show',['attraction' => $attraction]);
     }
+
+
+
+
+
 
 
 

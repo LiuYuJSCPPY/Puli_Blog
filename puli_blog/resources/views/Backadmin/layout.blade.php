@@ -11,6 +11,7 @@
       <![endif]-->
       <!-- Meta -->
       <meta charset="utf-8">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="description" content="CodedThemes">
@@ -478,6 +479,7 @@
 <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo-12.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+
 <script>
 
 var $window = $(window);
@@ -491,6 +493,12 @@ var nav = $('.fixed-button');
      }
  });
 </script>
+
+
+@section('js')
+
+@show
+
 
 </body>
 
