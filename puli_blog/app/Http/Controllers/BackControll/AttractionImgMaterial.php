@@ -23,12 +23,14 @@ class AttractionImgMaterial extends Controller
     // 景點新增細項畫面
 
     public function Materialindex($id){
+        $attraction = Attractions::find($id);
 
 
-
-        return view('Backadmin.AttractionsControll.AttractionMaterial');
+        return view('Backadmin.AttractionsControll.AttractionMaterial',['attraction' =>  $attraction]);
     }
 
+
+    // 景點細項資料
     public function Material(){
 
         $attraction_id = session('attraction_id');
@@ -40,41 +42,102 @@ class AttractionImgMaterial extends Controller
         ]);
     }
 
+    // 需要更新景點個別資料
+    public function MaterialEdit($id){
 
+        $attraction_id = session('attraction_id');
 
+        $attraction = Attractions_price::where('id','=',$id)->where('attractions_id','=',$attraction_id)->first();
 
-
-    public function attractionMaterialCreate($id){
-        $user = Auth::user();
-        $attraction = Attractions::findOrFail($id);
-        $attractions_price = Attractions_price::where('attractions_id','=',$attraction->id)->get();
-
-        return view('Backadmin.AttractionsControll.AttractionsCreate',['attractions' => $attraction,'attractions_price' => $attractions_price,'user' => $user]);
-    }
-
-    // 景點新增圖片畫面
-    public function AttractionImgCreate($id){
-        $user = Auth::user();
-        $attraction = attractions::find($id);
-        $imgs = Attractions_img::where('attractions_id','=',$attraction->id)->get();
-
-        return view('Backadmin.AttractionsControll.AttracionsImgCreate',['attraction' => $attraction,'imgs' => $imgs,'user' => $user]);
+        return response()->json([
+            'status' => 200,
+            'attraction' => $attraction,
+        ]);
     }
 
 
     // 新增細項
     public function attractionMaterialStore(Request $request){
-        $Material = new Attractions_price;
 
-        $Material->attractions_id = $request->input('attractions_id');
-        $Material->name = $request->input('name');
-        $Material->price = $request->input('price');
-        $Material->save();
-        return response()->json([
-            'status' => 200,
-            'message' => '新增成功'
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'price' => 'required',
+            'attractions_id' => 'required',
         ]);
 
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error' => $validator->messages()
+            ]);
+        }else{
+            $attraction = new Attractions_price;
+
+            $attraction->name = $request->input('name');
+            $attraction->price = $request->input('price');
+            $attraction->attractions_id = $request->input('attractions_id');
+            $attraction->save();
+            return response()->json([
+                'status' => 200,
+                'message' => '新增成功'
+            ]);
+
+        }
+
+    }
+
+
+    public function teatMaterialUpdate($post_id, $id ){
+        $attraction = Attractions_price::where('id','=',$id)->where('attractions_id','=',$post_id)->first();
+
+        return response()->json([
+            'status' => 200,
+            'update' => $attraction,
+            'message' => "已經更新囉!!",
+        ]);
+    }
+
+
+    public function MaterialUpdate($post_id, $id ,Request $request){
+
+        if($post_id && $id){
+            $update = Attractions_price::where('attractions_id','=',$post_id)->where('id','=',$id)->first();
+
+            $validator = Validator::make($request->all(),[
+                'name' => 'required',
+                'attractions_id' => 'required',
+                'price' => 'required',
+            ]);
+
+            if($validator->fails()){
+
+                $update->name = $request->input('name');
+                $update->price = $request->input('price');
+                $update->save();
+
+                return response()->json([
+                    'status' => 200,
+                    'update' => $update,
+                    'message' => "已經更新囉!!",
+                ]);
+
+            }else{
+
+                return response()->json([
+                    'status' => 400,
+                    'message' => $validator->messages()
+                ]);
+
+            }
+
+        }else{
+
+        return response()->json([
+        'status' => 400,
+        'message' => "沒有此資料",
+        ]);
+        }
 
     }
 
@@ -136,33 +199,6 @@ class AttractionImgMaterial extends Controller
 
     return view('Backadmin.AttractionsControll.AttractionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
     }
-
-
-
-    // 更新細項
-    public function attractionMaterialUpdate($post_id,$id , Request $request){
-
-        if($id&&$post_id){
-            $attraction_M = Attractions_price::where('id' ,'=' ,$id)->get();
-
-            if( $request->hasAny(['name','price']) ){
-                $Rupdate = $request->all();
-                Attractions_price::findOrFail($id)->update($Rupdate);
-                return back()->with('成功更改');
-
-            }else{
-
-                return back()->with('更改失敗');
-            }
-
-        }else{
-            return back()->with('路由有問題');
-        }
-
-
-    }
-
-
 
 
     // 更新圖片

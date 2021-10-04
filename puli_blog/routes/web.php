@@ -29,9 +29,12 @@ Route::prefix('Auth')->name('auth')->group(function(){
 // ajaxv CRUD 系統
 
 Route::get('Material/{id}',[AttractionImgMaterial::class,'Materialindex'])->name('Material');
-Route::get('test',[AttractionImgMaterial::class,'Material'])->name('attractionMaterial');
+Route::get('Materials',[AttractionImgMaterial::class,'Material'])->name('MaterialCreate');
+Route::get('Material/edit/{id}',[AttractionImgMaterial::class,'MaterialEdit'])->name('Materialedit');
 Route::post('Material/store',[AttractionImgMaterial::class,'attractionMaterialStore'])->name('attractionMaterial.store');
-Route::put('Material/{post_id}/Material/{M_id}/Update',[AttractionImgMaterial::class,'attractionMaterialUpdate'])->name('attractionMaterial.update');
+Route::put('Material/update/{post_id}/{id}',[AttractionImgMaterial::class,'MaterialUpdate']);
+Route::get('Material/update/{post_id}/{id}/test',[AttractionImgMaterial::class,'teatMaterialUpdate']);
+
 
 
 

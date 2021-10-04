@@ -437,13 +437,14 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Hover table</h5>
+                                            <h5>{{$attraction->name}}</h5>
                                             <h1 id=""></h1>
                                             <span>use class <code>table-hover</code> inside table element</span>
-                                            <div class="card-header-right">  <button type="button" href="" id="add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">新增景點價格</button></div>
+                                            <div class="card-header-right">  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button></div>
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
+                                                <div id="success_message"></div>
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
@@ -479,23 +480,22 @@
                                     </div>
                                     <!-- Hover table card end -->
                                 </div>
-                                <div id="app">
-  @{{ info }}
-</div>
+
                                 <!-- Page-body end -->
                             </div>
                         </div>
                         <!-- Main-body end -->
 
                         <!-- 新增 -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
+                    <div class="modal fade" id="AttractionModal" tabindex="-1" aria-labelledby="AttractionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                    <h5 class="modal-title" id="AttractionModalLabel">New message</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <ul id="save_msgList"></ul>
                                     <form>
 
                                     <div class="mb-3">
@@ -505,18 +505,51 @@
 
                                     <div class="mb-3">
                                         <label for="recipient-name"  class="col-form-label name">價錢:</label>
-                                        <input type="number" class="form-control"  >
+                                        <input type="number" class="form-control" id="price">
                                     </div>
-                                    <input type="hidden"  id="attraction_id" value="">
+                                        <input type="hidden"  id="attraction_id" value="{{ $attraction->id }}">
                                     </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary add_price" >Send message</button>
+                                    <button type="button" class="btn btn-primary add_attraction" >Save</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    <!-- 更新 -->
+                    <div class="modal fade" id="UpdateAttractionModal" tabindex="-1" aria-labelledby="AttractionModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"  id="AttractionModalLabel"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul id="save_msgList"></ul>
+                                    <form>
+
+                                    <div class="mb-3">
+                                        <label for="recipient-name"  class="col-form-label ">名稱:</label>
+                                        <input type="text" id="name" class="form-control AttractionName"  >
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="recipient-name"  class="col-form-label name">價錢:</label>
+                                        <input type="number" class="form-control price" id="price">
+                                    </div>
+                                        <input type="hidden"  id="attraction_id" value="{{ $attraction->id }}" class="attraction_id">
+                                        <input type="hidden"  id="post_id" value=" " class="post_id">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary udpate_attraction" >Save</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="fixed-button">
@@ -573,20 +606,29 @@ var nav = $('.fixed-button');
 
 $(document).ready(function(){
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+
 
     test();
     function test(){
         $.ajax({
             type : "GET",
-            url:"/test",
+            url:"/Materials",
             dataType:"json",
             success :function(response){
-                console.log(response);
+                // console.log(response.test);
+                $.each( response.test ,function( key , item ){
+                    $('tbody').append(
+                        '<tr>\
+                            <th scope="row">'+item.id +'</th>\
+                            <td>'+item.name+'</td>\
+                            <td>'+item.price +'</td>\
+                            <td>\
+                            <button type="button" value="' +item.id + '" class="btn btn-primary update_attraction" data-bs-toggle="modal" data-bs-target="#UpdateAttractionModal">更新</button>\
+                                <button type="button" class="btn btn-danger add_price" >刪除</button>\
+                            </td>\
+                        </tr>'
+                    );
+                });
             }
         });
     }
@@ -594,23 +636,111 @@ $(document).ready(function(){
 
 
     // ajax新增按鈕
-    $(document).on('click','#add',function(){
+    $(document).on('click','.add_attraction',function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        e.preventDefault();
 
         var data = {
             'name' : $('#name').val(),
             'price' : $('#price').val(),
+            'attractions_id' : $('#attraction_id').val(),
         }
+
         $.ajax({
             type : "POST",
             url:"/Material/store",
             data : data,
             dataType:"json",
             success :function(response){
-                console.log(response);
+                if( response.status == 400 ){
+                    $('#save_msgList').html("");
+                    $('#save_msgList').addClass("alert alert-danger");
+                    $.each(response.error,function(key,err_value){
+                        $('#save_msgList').append('<li>'+ err_value +'</li>');
+                    });
+                    $('.add_attraction').text('Save');
+                }else{
+                    $('#save_msgList').html("");
+                    $('#success_message').addClass('alert alert-success');
+                    $('#success_message').text(response.message);
+                    $('#AttractionModal').find('input').val('');
+                    $('.add_attraction').text('Save');
+                    $('#AttractionModal').modal('hide');
+                    fetchstudent();
+                }
             }
         });
-        console.log(data);
+
     });
+
+    // ajax更新按鈕
+
+    $(document).on('click','.update_attraction',function(e){
+     e.preventDefault();
+
+     $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+    var edit_id = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url : "/Material/edit/" + edit_id,
+            success : function(response){
+                console.log(response.attraction);
+                $('.AttractionName').val(response.attraction.name);
+                $('.price').val(response.attraction.price);
+                $('.attraction_id').val(response.attraction.attractions_id);
+                $('#btn-close').find('input').val("");
+                $('.modal-title').text(response.attraction.name+"的資料更新");
+                $('#post_id').val(response.attraction.id);
+            }
+        });
+    });
+
+
+
+    // 更新到server端
+    $(document).on('click','.udpate_attraction' ,function(e){
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var attraction_id = $('.attraction_id').val();
+        var id = $('.post_id').val();
+
+        var UpdateData = {
+            'name' : $('.AttractionName').val(),
+            'price' :$('.price').val(),
+            'attractions_id' :$('.attraction_id').val(),
+        }
+
+        console.log("/"+attraction_id+"/Material/"+id+"/Update");
+
+        $.ajax({
+            type: "put",
+            url: "/Material/Update/"+attraction_id+"/"+id,
+            data : UpdateData,
+            dataType: "JSON",
+            success : function(response){
+                console.log(response);
+            }
+
+        });
+
+
+    })
+
 
 
 
