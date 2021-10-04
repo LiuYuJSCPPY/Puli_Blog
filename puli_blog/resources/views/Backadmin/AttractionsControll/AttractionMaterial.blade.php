@@ -528,19 +528,19 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <ul id="save_msgList"></ul>
+                                    <ul id="update_msgList"></ul>
                                     <form>
 
                                     <div class="mb-3">
                                         <label for="recipient-name"  class="col-form-label ">名稱:</label>
-                                        <input type="text" id="name" class="form-control AttractionName"  >
+                                        <input type="text" id="update_name" class="form-control AttractionName"  >
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="recipient-name"  class="col-form-label name">價錢:</label>
-                                        <input type="number" class="form-control price" id="price">
+                                        <input type="number" class="form-control price" id="update_price">
                                     </div>
-                                        <input type="hidden"  id="attraction_id" value="{{ $attraction->id }}" class="attraction_id">
+                                        <input type="hidden"  id="update_attraction_id" value="{{ $attraction->id }}" >
                                         <input type="hidden"  id="post_id" value=" " class="post_id">
                                     </form>
                                 </div>
@@ -623,7 +623,7 @@ $(document).ready(function(){
                             <td>'+item.name+'</td>\
                             <td>'+item.price +'</td>\
                             <td>\
-                            <button type="button" value="' +item.id + '" class="btn btn-primary update_attraction" data-bs-toggle="modal" data-bs-target="#UpdateAttractionModal">更新</button>\
+                            <button type="button" value="' +item.id + '" class="btn btn-primary editbtn_attraction" data-bs-toggle="modal" data-bs-target="#UpdateAttractionModal">更新</button>\
                                 <button type="button" class="btn btn-danger add_price" >刪除</button>\
                             </td>\
                         </tr>'
@@ -679,7 +679,7 @@ $(document).ready(function(){
 
     // ajax更新按鈕
 
-    $(document).on('click','.update_attraction',function(e){
+    $(document).on('click','.editbtn_attraction',function(e){
      e.preventDefault();
 
      $.ajaxSetup({
@@ -710,30 +710,41 @@ $(document).ready(function(){
     // 更新到server端
     $(document).on('click','.udpate_attraction' ,function(e){
         e.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-        var attraction_id = $('.attraction_id').val();
+
+        var attraction_id = $('#update_attraction_id').val();
         var id = $('.post_id').val();
 
         var UpdateData = {
-            'name' : $('.AttractionName').val(),
-            'price' :$('.price').val(),
-            'attractions_id' :$('.attraction_id').val(),
+            'name' : $('#update_name').val(),
+            'price' :$('#update_price').val(),
+            'attractions_id' :$('#update_attraction_id').val(),
         }
+        console.log(UpdateData);
 
-        console.log("/"+attraction_id+"/Material/"+id+"/Update");
+
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
 
         $.ajax({
-            type: "put",
-            url: "/Material/Update/"+attraction_id+"/"+id,
+            type: "PUT",
+            url: "/Material/update/"+attraction_id+"/"+id,
             data : UpdateData,
             dataType: "JSON",
             success : function(response){
                 console.log(response);
+                $('#update_msgList').html("");
+                $('#update_msgList').addClass("alert alert-danger");
+                $.each(response.message,function(key,message){
+                    $('#update_msgList').append('<li>'+ message +'</li>');
+                });
+                $('.udpate_attraction').text('Update');
+
             }
 
         });

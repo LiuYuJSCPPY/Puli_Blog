@@ -104,17 +104,17 @@ class AttractionImgMaterial extends Controller
         if($post_id && $id){
             $update = Attractions_price::where('attractions_id','=',$post_id)->where('id','=',$id)->first();
 
-            $validator = Validator::make($request->all(),[
-                'name' => 'required',
-                'attractions_id' => 'required',
-                'price' => 'required',
-            ]);
+            // $validator = Validator::make($request->all(),[
+            //     'name' => 'required',
+            //     'attractions_id' => 'required',
+            //     'price' => 'required',
+            // ]);
 
-            if($validator->fails()){
+            // if($validator->fails()){
 
                 $update->name = $request->input('name');
                 $update->price = $request->input('price');
-                $update->save();
+                $update->update();
 
                 return response()->json([
                     'status' => 200,
@@ -122,21 +122,21 @@ class AttractionImgMaterial extends Controller
                     'message' => "已經更新囉!!",
                 ]);
 
-            }else{
+            // }else{
 
-                return response()->json([
-                    'status' => 400,
-                    'message' => $validator->messages()
-                ]);
+            //     return response()->json([
+            //         'status' => 400,
+            //         'message' => 'error',
+            //     ]);
 
-            }
+            // }
 
         }else{
 
-        return response()->json([
-        'status' => 400,
-        'message' => "沒有此資料",
-        ]);
+            return response()->json([
+                'status' => 404,
+                'message' => "noll id",
+            ]);
         }
 
     }
