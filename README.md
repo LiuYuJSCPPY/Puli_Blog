@@ -1,6 +1,6 @@
 # 埔里觀光網站
 
-## 功能<https://github.com/LiuYuJSCPPY/Puli_Blog/#功能>
+## 功能
 
 * 網站後台管理系統(Content Management System, CMS ):
   * 設有使用者權限判別，如果登入管理者身分(Admin)，才能進入後台介面，新增、編輯以及刪除文章。
