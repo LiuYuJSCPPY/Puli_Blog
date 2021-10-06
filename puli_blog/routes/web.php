@@ -33,7 +33,10 @@ Route::get('Materials',[AttractionImgMaterial::class,'Material'])->name('Materia
 Route::get('Material/edit/{id}',[AttractionImgMaterial::class,'MaterialEdit'])->name('Materialedit');
 Route::post('Material/store',[AttractionImgMaterial::class,'attractionMaterialStore'])->name('attractionMaterial.store');
 Route::put('Material/update/{post_id}/{id}',[AttractionImgMaterial::class,'MaterialUpdate']);
-Route::get('Material/update/{post_id}/{id}/test',[AttractionImgMaterial::class,'teatMaterialUpdate']);
+Route::DELETE('delete/{post_id}/Material/{id}',[AttractionImgMaterial::class,'Materialdestroy']);
+
+
+// Route::get('Material/update/{post_id}/{id}/test',[AttractionImgMaterial::class,'teatMaterialUpdate']);
 
 
 

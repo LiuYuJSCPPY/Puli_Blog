@@ -440,6 +440,7 @@
                                             <h5>{{$attraction->name}}</h5>
                                             <h1 id=""></h1>
                                             <span>use class <code>table-hover</code> inside table element</span>
+                                            <ul id="save_msgList"></ul>
                                             <div class="card-header-right">  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button></div>
                                         </div>
                                         <div class="card-block table-border-style">
@@ -486,7 +487,7 @@
                         </div>
                         <!-- Main-body end -->
 
-                        <!-- 新增 -->
+                    <!-- 新增 -->
                     <div class="modal fade" id="AttractionModal" tabindex="-1" aria-labelledby="AttractionModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -495,7 +496,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <ul id="save_msgList"></ul>
+
                                     <form>
 
                                     <div class="mb-3">
@@ -517,18 +518,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 新增 -->
 
 
-                    <!-- 更新 -->
-                    <div class="modal fade" id="UpdateAttractionModal" tabindex="-1" aria-labelledby="AttractionModalLabel" aria-hidden="true">
+                    <!-- START更新 -->
+                    <div class="modal fade" id="Update_AttractionModal" tabindex="-1" aria-labelledby="Update_AttractionModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"  id="AttractionModalLabel"></h5>
+                                    <h5 class="modal-title"  id="Update_AttractionModalLabel"></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <ul id="update_msgList"></ul>
+
                                     <form>
 
                                     <div class="mb-3">
@@ -551,6 +553,31 @@
                             </div>
                         </div>
                     </div>
+                    <!-- END更新 -->
+
+
+                    <!-- Start刪除 -->
+                    <div class="modal fade" id="delete_AttractionModal" tabindex="-1" aria-labelledby="delete_AttractionModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Student Data</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Confirm to Delete Data ?</h4>
+                                    <input type="hidden" name="" id="delete_attraction" value="{{ $attraction->id }}">
+                                    <input type="hidden" name="" id='delete_id'>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary delete_attraction_price">Yes Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END刪除 -->
+
                 </div>
                 <div class="fixed-button">
                     <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
@@ -616,6 +643,7 @@ $(document).ready(function(){
             dataType:"json",
             success :function(response){
                 // console.log(response.test);
+                $('tbody').html("");
                 $.each( response.test ,function( key , item ){
                     $('tbody').append(
                         '<tr>\
@@ -623,8 +651,8 @@ $(document).ready(function(){
                             <td>'+item.name+'</td>\
                             <td>'+item.price +'</td>\
                             <td>\
-                            <button type="button" value="' +item.id + '" class="btn btn-primary editbtn_attraction" data-bs-toggle="modal" data-bs-target="#UpdateAttractionModal">更新</button>\
-                                <button type="button" class="btn btn-danger add_price" >刪除</button>\
+                            <button type="button" value="' +item.id + '" class="btn btn-primary editbtn_attraction" data-bs-toggle="modal" data-bs-target="#Update_AttractionModal">更新</button>\
+                            <button type="button" value="' +item.id + '" class="btn btn-danger delete_button" data-bs-toggle="modal" data-bs-target="#delete_AttractionModal" >刪除</button>\
                             </td>\
                         </tr>'
                     );
@@ -670,7 +698,7 @@ $(document).ready(function(){
                     $('#AttractionModal').find('input').val('');
                     $('.add_attraction').text('Save');
                     $('#AttractionModal').modal('hide');
-                    fetchstudent();
+                    test();
                 }
             }
         });
@@ -737,20 +765,89 @@ $(document).ready(function(){
             data : UpdateData,
             dataType: "JSON",
             success : function(response){
-                console.log(response);
-                $('#update_msgList').html("");
-                $('#update_msgList').addClass("alert alert-danger");
-                $.each(response.message,function(key,message){
-                    $('#update_msgList').append('<li>'+ message +'</li>');
-                });
-                $('.udpate_attraction').text('Update');
+                if (response.status == 400){
 
+                    $('#save_msgList').html("");
+                    $('#save_msgList').addClass("alert alert-danger");
+                    $.each(response.error,function(key,err_value){
+                        $('#save_msgList').append('<li>'+ err_value +'</li>');
+                    });
+                    $('.add_attraction').text('Save');
+
+                }else{
+                // console.log(response);
+
+                $('#save_msgList').html('');
+                $('#success_message').addClass('alert alert-success');
+                $('#success_message').text(response.message);
+                $('#Update_AttractionModal').find('input').val('');
+                $('.udpate_attraction').text("UPDATE");
+                $('#Update_AttractionModal').modal('hide');
+                test();
             }
+                }
+
 
         });
 
-
     })
+
+
+
+    $(document).on('click','.delete_button',function(e){
+        e.preventDefault(e);
+
+        var this_id = $(this).val();
+
+        $('#delete_id').val(this_id);
+        $('#delete_AttractionModal').modal('show');
+
+    });
+
+
+
+
+    $(document).on('click','.delete_attraction_price',function(e){
+        e.preventDefault(e);
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var data = {
+            'attractions_id' : $('#delete_attraction').val(),
+            'id' : $('#delete_id').val(),
+        }
+
+        $.ajax({
+            type: 'delete',
+            data : data,
+            url: "/delete/" + data.attractions_id + "/Material/" + data.id,
+            dataType : "JSON",
+            success : function(response){
+                if (response.status == 404) {
+                    $('#success_message').addClass('alert alert-success');
+                    $('#success_message').text(response.message);
+                    $('.delete_attraction_price').text('YES Delete');
+                }else{
+                    $('#save_msgList').html("");
+                    $('#success_message').addClass('alert alert-success');
+                    $('#success_message').text(response.message);
+                    $('.delete_attraction_price').text('YES Delete');
+                    $('#delete_AttractionModal').modal('hide');
+                    test();
+                }
+
+
+            }
+        });
+
+
+    });
+
+
 
 
 
