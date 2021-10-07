@@ -246,7 +246,6 @@ class AttractionImgMaterial extends Controller
             return back()->with('success file!');
         }
 
-        return back()->with('success file!');
 
     }
 

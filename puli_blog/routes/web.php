@@ -48,12 +48,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
 
 
     Route::prefix('attraction')->group(function(){
-         // 新增
-
-        // 更新
-
-
-
         // 圖片
         Route::post('{post_id}/img/create',[AttractionImgMaterial::class,'AttractionImgStore'])->name('attractionImg.Store');
         Route::put('Img/{post_id}/img/{M_id}/Update',[AttractionImgMaterial::class,'AttractionImgUpdate'])->name('attractionImg.update');

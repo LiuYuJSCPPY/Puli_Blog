@@ -18,4 +18,7 @@ class Attractions extends Model
     public function Attraction_price(){
         return $this->hasMany(Attractions_price::class,'attractions_id','id');
     }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

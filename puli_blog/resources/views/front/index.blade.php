@@ -388,6 +388,7 @@
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
+
                     <li class="clearfix">
                       <div class="widget-posts-image"><a href="#"><img src=" {{ asset('front_assets/images/rp-3.jpg') }}" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
