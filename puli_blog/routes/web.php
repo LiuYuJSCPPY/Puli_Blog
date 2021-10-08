@@ -5,6 +5,7 @@ use App\Http\Controllers\BackControll\AttractionControll as BackAttraction;
 use App\Http\Controllers\BackControll\AttractionImgMaterial;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\AttractionControll as FrontAttraction;
+use App\Http\Controllers\CommentControll;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
 Route::get('puli_blog/attractions',[FrontAttraction::class,'index'])->name('attractions.index');
 Route::get('puli_blog/attractions/show/{id}',[FrontAttraction::class,'show'])->name('attractions.show');
 
+Route::get('comment/categroy/{categroy_id}/post/{post_id}',[CommentControll::class,'GetPostComment']);
+Route::post('comment/categroy/{categroy_id}/post/{post_id}',[CommentControll::class,'StorePostComment'])->name('Store.Comment');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

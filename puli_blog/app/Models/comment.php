@@ -9,7 +9,7 @@ class comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','post_id','text','display'];
+    protected $fillable = ['user_id','posts_id','name','text','display'];
 
     public function user(){
         return $this->belongsTo(user::class,'user_id','id');

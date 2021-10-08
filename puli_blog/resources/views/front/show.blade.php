@@ -30,6 +30,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="front_assets/images/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--
     Stylesheets
     =============================================
@@ -45,8 +46,8 @@
     <link href="{{ asset('front_assets/lib/components-font-awesome/css/font-awesome.min.css' )}}" rel="stylesheet">
     <link href="{{ asset('front_assets/lib/et-line-font/et-line-font.css' )}}" rel="stylesheet">
     <link href="{{ asset('front_assets/lib/flexslider/flexslider.css' )}}" rel="stylesheet">
-    <link href="{{ asset('front_assets/lib/owl.carousel/dist/front_assets/owl.carousel.min.cs' )}}s" rel="stylesheet">
-    <link href="{{ asset('front_assets/lib/owl.carousel/dist/front_assets/owl.theme.default.min.css' )}}" rel="stylesheet">
+    <link href="{{ asset('front_assets/lib/owl.carousel/dist/assets/owl.carousel.min.cs' )}}s" rel="stylesheet">
+    <link href="{{ asset('front_assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css' )}}" rel="stylesheet">
     <link href="{{ asset('front_assets/lib/magnific-popup/dist/magnific-popup.css' )}}" rel="stylesheet">
     <link href="{{ asset('front_assets/lib/simple-text-rotator/simpletextrotator.css' )}}" rel="stylesheet">
     <!-- Main stylesheet and color file-->
@@ -134,10 +135,16 @@
             <div class="row">
               <div class="col-sm-8">
                 <div class="post">
-                  <div class="post-thumbnail"><img src="{{ asset('front_assets/images/post-4.jpg') }}" alt="Blog Featured Image"/></div>
+
+                  @if (@$attraction->Attraction_img)
+                    <div class="post-thumbnail"><img src="{{ @$attraction->Attraction_img->first()->path_img }}" alt="avatar"/></div>
+                    @else
+                    <div class="post-thumbnail"><img src="{{ asset('front_assets/images/post-4.jpg') }}" alt="Blog Featured Image"/></div>
+                    @endif
+
                   <div class="post-header font-alt">
                     <h1 class="post-title">{{ $attraction->name }}</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">{{ $attraction->user->name }}</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <div class="post-meta">By&nbsp;<a href="#">{{ @$attraction->user->name }}</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
                     </div>
                   </div>
                   <div class="post-entry">
@@ -146,19 +153,21 @@
                 </div>
                 <div class="price">
                 <h4 class="comment-title font-alt">景點價格</h4>
+                <div class="menu col-sm-12">
                 @foreach($attraction->Attraction_price as $attraction_price  )
                   <div class="menu col-sm-6">
                     <div class="row">
                         <div class="col-sm-6">
                         <h4 class="menu-title font-alt">{{ $attraction_price->name }}</h4>
-                        <div class="menu-detail font-serif">Mushroom / Veggie / White Sources</div>
+                        <!-- <div class="menu-detail font-serif">Mushroom / Veggie / White Sources</div> -->
                         </div>
                         <div class="col-sm-4 menu-price-detail">
-                        <h4 class="menu-price font-alt">$10.5</h4>
+                        <h4 class="menu-price font-alt">TW  {{ $attraction_price->price }}</h4>
                         </div>
                     </div>
                   </div>
                 @endforeach
+                </div>
 
 
                 </div>
@@ -166,6 +175,8 @@
               <!-- START留言 -->
                 <div class="comments">
                   <h4 class="comment-title font-alt">There are 3 comments</h4>
+
+
                   <div class="comment clearfix">
                     <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/ryanbattles/128.jpg" alt="avatar"/></div>
                     <div class="comment-content clearfix">
@@ -176,6 +187,7 @@
                       <div class="comment-meta font-alt">Today, 14:55 - <a href="#">Reply</a>
                       </div>
                     </div>
+
                     <div class="comment clearfix">
                       <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/draganbabic/128.jpg" alt="avatar"/></div>
                       <div class="comment-content clearfix">
@@ -188,6 +200,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="comment clearfix">
                     <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg" alt="avatar"/></div>
                     <div class="comment-content clearfix">
@@ -200,14 +213,16 @@
                     </div>
                   </div>
                 </div>
+
+
                 <div class="comment-form">
                   <h4 class="comment-form-title font-alt">新增公開留言:</h4>
-                  <form method="post">
                     <div class="form-group">
                       <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Comment"></textarea>
+                      <input type="hidden" id="post_id" value="{{ $attraction->id }}">
+                      <input type="hidden" id="categroy" value="1">
                     </div>
-                    <button class="btn btn-round btn-d" type="submit">Post comment</button>
-                  </form>
+                    <button class="btn btn-round btn-d addbtn" >Post comment</button>
                 </div>
               </div>
               <!-- END留言 -->
@@ -218,6 +233,7 @@
                   <form role="form">
                     <div class="search-box">
                       <input class="form-control" type="text" placeholder="Search..."/>
+                      <input type="hidden" id="" value="">
                       <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                   </form>
@@ -233,11 +249,15 @@
                   </ul>
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">新增文章</h5>
+                  <h5 class="widget-title font-alt">新增的文章</h5>
                   <ul class="widget-posts">
                     @foreach( $Atraction as $post )
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="front_assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
+                      @if(@$post->Attraction_img)
+                      <div class="widget-posts-image"><a href="#"><img src="{{ @$post->Attraction_img->path_img }}" alt="Post Thumbnail"/></a></div>
+                      @else
+                      <div class="widget-posts-image"><a href="#"><img src="" alt="Post Thumbnail"/></a></div>
+                      @endif
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">{{ $post->name }}</a></div>
                         <div class="widget-posts-meta">23 january</div>
@@ -361,5 +381,85 @@
     <script src=" {{ asset('front_assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js') }}"></script>
     <script src=" {{ asset('front_assets/js/plugins.js') }}"></script>
     <script src=" {{ asset('front_assets/js/main.js') }}"></script>
+    <Script>
+      $(document).ready(function(){
+
+        GetComment();
+        function GetComment(){
+          $.ajax({
+            type: "GET",
+            url : "/comment/categroy/{{ $post->id }}/post/{{$attraction->id}}",
+            success : function(response){
+              console.log(response);
+
+              $.each(response.PostComment,function(key,item){
+                $(".comments").append(
+                  '<div class="comment clearfix">\
+                    <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg" alt="avatar"/></div>\
+                    <div class="comment-content clearfix">\
+                      <div class="comment-author font-alt"><a href="#">'+item.name+'</a></div>\
+                      <div class="comment-body">\
+                        <p>'+item.text+'</p>\
+                      </div>\
+                      <div class="comment-meta font-alt">'+ item.created_at+' - <a href="#">Reply</a>\
+                      </div>\
+                    </div>\
+                  </div>'
+                );
+                console.log(item.name);
+              });
+            }
+          });
+
+        }
+
+
+
+
+        $('.addbtn').on('click',function(e){
+
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          e.preventDefault();
+
+          var data = {
+            'text' : $('#comment').val(),
+            'post_id' :  $('#post_id').val(),
+            'categroy' : $('#categroy').val(),
+          }
+          $.ajax({
+            type : "POST",
+            data : data,
+            dataType : "JSON",
+            url : "/comment/categroy/{{ $post->id }}/post/{{$attraction->id}}",
+            success : function(response){
+
+              if( response.status == 400 ){
+                $('.form-group').append('<div class="alert alert-danger" role="alert">\
+                  <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-coffee"></i><strong>' +response.error + '!</strong> 您尚未登入\
+                </div>');
+                console.log(response.error);
+              }else{
+                $(".comments").html("");
+                $('.form-group').find('input').val("");
+                $('.form-group').find('textarea').val("");
+                GetComment();
+              }
+            }
+          });
+
+          console.log(data);
+        });
+
+
+
+
+      });
+
+    </Script>
   </body>
 </html>

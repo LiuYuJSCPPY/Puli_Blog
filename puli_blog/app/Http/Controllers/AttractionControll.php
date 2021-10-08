@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Attractions;
 use App\Models\Attractions_img;
 use App\Models\Attractions_price;
+use App\Models\post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,9 +25,11 @@ class AttractionControll extends Controller
 
     public function show($id){
 
+        $post = post::where('post_categroy_id' ,'=',1)->where('artice_id','=',$id)->first();
+        var_dump($post->id);
         $attractions = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
         $attraction = Attractions::findOrFail($id);
-        return view('front.show',['attraction' => $attraction ,'Atraction' => $attractions]);
+        return view('front.show',['attraction' => $attraction ,'Atraction' => $attractions,'post' => $post]);
     }
 
 

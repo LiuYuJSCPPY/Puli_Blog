@@ -23,15 +23,21 @@ class AttractionControll extends Controller
     public function index()
     {
         //
-        if(Auth::user()){
-
+        if(Auth::user()->is_admin){
+            var_dump(Auth::user()->is_admin);
             $user = Auth::user();
-            $Attractions = Attractions::all();
 
+            if($user->id){
+                $userID = $user->id;
+                $Attractions = Attractions::where('user_id' ,'=',$userID)->get();
 
-            return view('Backadmin.AttractionsControll.index',['Attractions' => $Attractions,'user' => $user]);
+                return view('Backadmin.AttractionsControll.index',['Attractions' => $Attractions,'user' => $user]);
+            }
+
+        }else{
+
+            return response('你不是會員');
         }
-
 
     }
 

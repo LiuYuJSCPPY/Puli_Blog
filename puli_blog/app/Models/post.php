@@ -22,7 +22,7 @@ class post extends Model
         return $this->belongsTo(Attractions::class,'artice_id','id');
     }
 
-    public function commet(){
+    public function comment(){
         return $this->hasMany(comment::class,'post_id','id');
     }
 }
