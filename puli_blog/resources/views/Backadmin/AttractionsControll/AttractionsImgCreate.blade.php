@@ -91,19 +91,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">圖片:</label>
-                                        <div class="col-sm-4">
-                                            @if($attraction->Attraction_img)
-                                            <a class="btn btn-mat btn-primary" href="{{ route('admin.AttractionImgs',['post_id' => $attraction->id]) }}" >圖片庫</a>
-                                            @else
-                                            <div class="col-sm-4">
-                                                <h3>尚未圖片</h3>
-                                            </div>
-                                            @endif
 
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="card-block">
@@ -127,6 +115,7 @@
 
                                             <button class="btn btn-mat btn-primary " type="submit">送出</button>
                                             <button class="btn btn-mat btn-danger " type="reset" >重新填寫</button>
+                                            <a class="btn btn-mat btn-primary" href="{{ route('admin.AttractionImgs',['post_id' => $attraction->id]) }}" >圖片庫</a>
                                             <a class="btn btn-mat btn-success " href="{{ route('admin.attraction.index') }}" >首頁</a>
 
                                         </form>

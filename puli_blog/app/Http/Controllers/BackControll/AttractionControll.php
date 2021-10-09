@@ -70,13 +70,26 @@ class AttractionControll extends Controller
     public function store(AttractionsRequest $request)
     {
         //判斷是否是會員
-        if($request->user()){
-            $user = $request->user();
+        if(Auth::user()){
+            $user =Auth::user();
             $all = $request->all();
 
+            if( isset($all['name']) &&  $user->id){
+                $attractions = Attractions::create([
+                    'name' => $request->input('name'),
+                    'business_time_start' => $request->input('business_time_start'),
+                    'business_time_end' => $request->input('business_time_end'),
+                    'public_holiday' => $request->input('public_holiday'),
+                    'add' => $request->input('add'),
+                    'offical' => $request->input('offical'),
+                    'artice' => $request->input('artice'),
+                    'display' => $request->input('display'),
+                    'user_id' => $user->id
+                ]);
 
-            if( isset($all['name']) ){
-                $attractions = Attractions::create($all);
+                session('attraction_id','null');
+                session(['attraction_id' => $attractions->id]);
+
                 if ($attractions->id && $user->id){
                 post::create([
                     'user_id' => $user->id,
@@ -85,7 +98,7 @@ class AttractionControll extends Controller
                 ]);
                 }
 
-            return redirect()->route('admin.attractionMaterial.create',["post_id" => $attractions->id]);
+            return redirect()->route('Material',["id" => $attractions->id]);
             }
 
         }else{
@@ -135,6 +148,7 @@ class AttractionControll extends Controller
         //
         $users = Auth::user();
         $attraction = Attractions::findOrFail($id);
+
         return view('Backadmin.AttractionsControll.edit',['Attraction' => $attraction ,'user' => $users]);
 
     }
@@ -171,6 +185,11 @@ class AttractionControll extends Controller
     public function destroy($id)
     {
         //
+        $attraction = Attractions::find($id);
+
+        $attraction->delete();
+
+        return back();
     }
 
     protected function post($id){

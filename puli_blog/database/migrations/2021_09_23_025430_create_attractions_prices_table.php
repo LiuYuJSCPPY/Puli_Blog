@@ -16,6 +16,7 @@ class CreateAttractionsPricesTable extends Migration
         Schema::create('attractions_prices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attractions_id')->nullable();
+            $table->foreign('attractions_id')->on('attractions')->references('id')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->unsignedBigInteger('price')->nullable();
             $table->timestamps();

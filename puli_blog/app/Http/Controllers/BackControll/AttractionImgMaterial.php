@@ -35,10 +35,12 @@ class AttractionImgMaterial extends Controller
 
         $attraction_id = session('attraction_id');
 
+
         $Material = Attractions_price::where('attractions_id','=',$attraction_id)->get();
 
         return response()->json([
             'test' => $Material,
+            'Material' => $attraction_id,
         ]);
     }
 
@@ -165,6 +167,10 @@ class AttractionImgMaterial extends Controller
     }
 
 
+
+
+
+
     // 新增圖片
     public function AttractionImgStore($id ,Request $request){
         $attraction = Attractions::find($id);
@@ -195,6 +201,13 @@ class AttractionImgMaterial extends Controller
     }
 
 
+
+
+    public function AttractionImgCreate($post_id){
+        $attraction = Attractions::findOrFail($post_id);
+        $users = Auth::user();
+        return view('Backadmin.AttractionsControll.AttractionsImgCreate',['attraction' =>$attraction,'user' => $users]);
+    }
 
     // 該文章圖片庫
     public function AttractionImg($post_id){

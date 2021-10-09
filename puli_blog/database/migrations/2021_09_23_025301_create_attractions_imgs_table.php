@@ -18,6 +18,7 @@ class CreateAttractionsImgsTable extends Migration
             $table->string('name')->nullable();
             $table->string('path_img')->nullable();
             $table->unsignedBigInteger('attractions_id')->nullable();
+            $table->foreign('attractions_id')->on('attractions')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ class Attractions extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','business_time_start','business_time_end','public_holiday','add','offical','artice','display'];
+    protected $fillable = ['name','business_time_start','business_time_end','public_holiday','add','offical','artice','display','user_id'];
 
     // 圖片
     public function Attraction_img(){

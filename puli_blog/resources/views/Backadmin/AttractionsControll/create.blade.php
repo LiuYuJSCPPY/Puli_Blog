@@ -54,7 +54,9 @@
 
                                     <form method="post" action="{{ route('admin.attraction.store') }}">
                                         @csrf
+
                                         <input type="hidden" name="post_categroy_id" value="1">
+
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label @error('title') is-invalid @enderror" >名稱:</label>
                                             <div class="col-sm-4">
@@ -142,6 +144,7 @@
 
                                             <button class="btn btn-mat btn-primary " type="submit">送出</button>
                                             <button class="btn btn-mat btn-danger " type="reset" >重新填寫</button>
+                                            <a class="btn btn-mat btn-primary " href="{{ route('admin.attraction.index') }}">首頁</a>
                                         </form>
                                     </div>
                                 </div>

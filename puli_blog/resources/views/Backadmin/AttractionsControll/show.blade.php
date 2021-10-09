@@ -116,7 +116,8 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5>景點表格價位:</h5>
-                                                <button type="button" href="{{ route('Material',['id' => $attraction->id]) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">前往景點價格</button>
+
+
 
                                             </div>
                                             <div class="card-block table-border-style">

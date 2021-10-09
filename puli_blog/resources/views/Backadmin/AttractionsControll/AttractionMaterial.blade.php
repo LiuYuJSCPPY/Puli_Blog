@@ -441,7 +441,7 @@
                                             <h1 id=""></h1>
                                             <span>use class <code>table-hover</code> inside table element</span>
                                             <ul id="save_msgList"></ul>
-                                            <div class="card-header-right">  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button></div>
+                                            <div class="card-header-right">  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button> <a href="{{ route('admin.attraction.index') }}" class="btn btn-warning"> 首頁 </a></div>
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
@@ -450,30 +450,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>First Name</th>
-                                                            <th>Last Name</th>
-                                                            <th>Username</th>
+                                                            <th>票價名稱</th>
+                                                            <th>票價</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Thornton</td>
-                                                            <td>@fat</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">3</th>
-                                                            <td>Larry</td>
-                                                            <td>the Bird</td>
-                                                            <td>@twitter</td>
-                                                        </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -642,7 +625,8 @@ $(document).ready(function(){
             url:"/Materials",
             dataType:"json",
             success :function(response){
-                // console.log(response.test);
+                console.log(response.test);
+                console.log(response.Material);
                 $('tbody').html("");
                 $.each( response.test ,function( key , item ){
                     $('tbody').append(
