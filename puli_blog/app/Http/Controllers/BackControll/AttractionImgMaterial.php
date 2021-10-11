@@ -25,7 +25,6 @@ class AttractionImgMaterial extends Controller
     public function Materialindex($id){
         $attraction = Attractions::find($id);
 
-
         return view('Backadmin.AttractionsControll.AttractionMaterial',['attraction' =>  $attraction]);
     }
 
@@ -39,6 +38,7 @@ class AttractionImgMaterial extends Controller
         $Material = Attractions_price::where('attractions_id','=',$attraction_id)->get();
 
         return response()->json([
+            'session' =>  $attraction_id,
             'test' => $Material,
             'Material' => $attraction_id,
         ]);

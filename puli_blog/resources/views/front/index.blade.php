@@ -61,261 +61,55 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Titan</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="{{ route('attractions.index') }}">埔里</a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a>
-                <ul class="dropdown-menu">
-                  <li><a href="index_mp_fullscreen_video_background.html">Default</a></li>
-                  <li><a href="index_op_fullscreen_gradient_overlay.html">One Page</a></li>
-                  <li><a href="index_agency.html">Agency</a></li>
-                  <li><a href="index_portfolio.html">Portfolio</a></li>
-                  <li><a href="index_restaurant.html">Restaurant</a></li>
-                  <li><a href="index_finance.html">Finance</a></li>
-                  <li><a href="index_landing.html">Landing Page</a></li>
-                  <li><a href="index_photography.html">Photography</a></li>
-                  <li><a href="index_shop.html">Shop</a></li>
-                </ul>
+              <li class="dropdown"><a  href="#" >首頁</a>
+
               </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Headers</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Static Image Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_static.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Flexslider Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_flexslider.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Video Background Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_video_background.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Text Rotator Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_text_rotator.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Gradient Overlay Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">About</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="about1.html">About 1</a></li>
-                      <li><a href="about2.html">About 2</a></li>
-                      <li><a href="about3.html">About 3</a></li>
-                      <li><a href="about4.html">About 4</a></li>
-                      <li><a href="about5.html">About 5</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Services</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="service1.html">Service 1</a></li>
-                      <li><a href="service2.html">Service 2</a></li>
-                      <li><a href="service3.html">Service 3</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Pricing</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="pricing1.html">Pricing 1</a></li>
-                      <li><a href="pricing2.html">Pricing 2</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Gallery</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="gallery_col_2.html">2 Columns</a></li>
-                      <li><a href="gallery_col_3.html">3 Columns</a></li>
-                      <li><a href="gallery_col_4.html">4 Columns</a></li>
-                      <li><a href="gallery_col_6.html">6 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Contact</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="contact1.html">Contact 1</a></li>
-                      <li><a href="contact2.html">Contact 2</a></li>
-                      <li><a href="contact3.html">Contact 3</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Restaurant menu</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="restaurant_menu1.html">Menu 2 Columns</a></li>
-                      <li><a href="restaurant_menu2.html">Menu 3 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="login_register.html">Login / Register</a></li>
-                  <li><a href="faq.html">FAQ</a></li>
-                  <li><a href="404.html">Page 404</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Portfolio</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio_boxed_col_2.html">2 Columns</a></li>
-                      <li><a href="portfolio_boxed_col_3.html">3 Columns</a></li>
-                      <li><a href="portfolio_boxed_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed - Gutter</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio_boxed_gutter_col_2.html">2 Columns</a></li>
-                      <li><a href="portfolio_boxed_gutter_col_3.html">3 Columns</a></li>
-                      <li><a href="portfolio_boxed_gutter_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio_full_width_col_2.html">2 Columns</a></li>
-                      <li><a href="portfolio_full_width_col_3.html">3 Columns</a></li>
-                      <li><a href="portfolio_full_width_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width - Gutter</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio_full_width_gutter_col_2.html">2 Columns</a></li>
-                      <li><a href="portfolio_full_width_gutter_col_3.html">3 Columns</a></li>
-                      <li><a href="portfolio_full_width_gutter_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Masonry</a>
-                    <ul class="dropdown-menu">
-                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="portfolio_masonry_boxed_col_2.html">2 Columns</a></li>
-                          <li><a href="portfolio_masonry_boxed_col_3.html">3 Columns</a></li>
-                          <li><a href="portfolio_masonry_boxed_col_4.html">4 Columns</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="portfolio_masonry_full_width_col_2.html">2 Columns</a></li>
-                          <li><a href="portfolio_masonry_full_width_col_3.html">3 Columns</a></li>
-                          <li><a href="portfolio_masonry_full_width_col_4.html">4 Columns</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Hover Style</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio_hover_black.html">Black</a></li>
-                      <li><a href="portfolio_hover_gradient.html">Gradient</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Single</a>
-                    <ul class="dropdown-menu">
-                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Image</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="portfolio_single_featured_image1.html">Style 1</a></li>
-                          <li><a href="portfolio_single_featured_image2.html">Style 2</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Slider</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="portfolio_single_featured_slider1.html">Style 1</a></li>
-                          <li><a href="portfolio_single_featured_slider2.html">Style 2</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Video</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="portfolio_single_featured_video1.html">Style 1</a></li>
-                          <li><a href="portfolio_single_featured_video2.html">Style 2</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Blog</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Standard</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="blog_standard_left_sidebar.html">Left Sidebar</a></li>
-                      <li><a href="blog_standard_right_sidebar.html">Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Grid</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="blog_grid_col_2.html">2 Columns</a></li>
-                      <li><a href="blog_grid_col_3.html">3 Columns</a></li>
-                      <li><a href="blog_grid_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Masonry</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="blog_grid_masonry_col_2.html">2 Columns</a></li>
-                      <li><a href="blog_grid_masonry_col_3.html">3 Columns</a></li>
-                      <li><a href="blog_grid_masonry_col_4.html">4 Columns</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Single</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="blog_single_left_sidebar.html">Left Sidebar</a></li>
-                      <li><a href="blog_single_right_sidebar.html">Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Features</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="alerts-and-wells.html"><i class="fa fa-bolt"></i> Alerts and Wells</a></li>
-                  <li><a href="buttons.html"><i class="fa fa-link fa-sm"></i> Buttons</a></li>
-                  <li><a href="tabs_and_accordions.html"><i class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
-                  <li><a href="content_box.html"><i class="fa fa-list-alt"></i> Contents Box</a></li>
-                  <li><a href="forms.html"><i class="fa fa-check-square-o"></i> Forms</a></li>
-                  <li><a href="icons.html"><i class="fa fa-star"></i> Icons</a></li>
-                  <li><a href="progress-bars.html"><i class="fa fa-server"></i> Progress Bars</a></li>
-                  <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Shop</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Product</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="shop_product_col_3.html">3 columns</a></li>
-                      <li><a href="shop_product_col_4.html">4 columns</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="shop_single_product.html">Single Product</a></li>
-                  <li><a href="shop_checkout.html">Checkout</a></li>
-                </ul>
+              <li class="dropdown"><a href="#" >景點</a>
+
               </li>
 
-              <li class="dropdown"><a class="dropdown-toggle" href="documentation.html" data-toggle="dropdown">Documentation</a>
-                <ul class="dropdown-menu">
-                  <li><a href="documentation.html#contact">Contact Form</a></li>
-                  <li><a href="documentation.html#reservation">Reservation Form</a></li>
-                  <li><a href="documentation.html#mailchimp">Mailchimp</a></li>
-                  <li><a href="documentation.html#gmap">Google Map</a></li>
-                  <li><a href="documentation.html#plugin">Plugins</a></li>
-                  <li><a href="documentation.html#changelog">Changelog</a></li>
+              @if(!Auth::user())
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">未登入</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="dropdown"><a href="{{ route('login') }}" >登入</a>
+                  </li>
                 </ul>
               </li>
+              @else
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ @$user->name }}</a>
+
+                <ul class="dropdown-menu" role="menu">
+                  <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">管理台</a>
+
+                  </li>
+                  <li class="dropdown">
+                    <form action="{{ route('logout') }}" method="post">
+                      @csrf
+                        <button class="dropdown-toggle" type="submit">登出</button >
+                    </form>
+                  </li>
+
+
+                </ul>
+              </li>
+              @endif
+
+
             </ul>
           </div>
         </div>
       </nav>
       <div class="main">
-        <section class="module bg-dark-60 blog-page-header" data-background=" {{ asset('front_assets/images/blog_bg.jpg') }}">
+        <section class="module bg-dark-60 blog-page-header" data-background=" {{ asset('front_assets/images/20210404_175054.jpg') }}">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Blog Grid</h2>
-                <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
+                <h2 class="module-title font-alt">景點</h2>
+                <div class="module-subtitle font-serif">去看看這個世界，並且讓世界的人知道我的美麗</div>
               </div>
             </div>
           </div>
@@ -348,29 +142,22 @@
                   </div>
                 @endforeach
 
-                  <div class="col-md-6 col-lg-6">
-                    <div class="post">
-                      <div class="post-thumbnail"><a href="#"><img src=" {{ asset('front_assets/images/post-2.jpg') }}" alt="Blog-post Thumbnail"/></a></div>
-                      <div class="post-header font-alt">
-                        <h2 class="post-title"><a href="#">Shore after the tide</a></h2>
-                        <div class="post-meta">By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4 Comments
-                        </div>
-                      </div>
-                      <div class="post-entry">
-                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                      </div>
-                      <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                    </div>
-                  </div>
+
+
 
                 </div>
-                <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+                <div class="pagination font-alt">
+                   {{ $attractions->links() }}
+                </div>
               </div>
+
+
               <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
                 <div class="widget">
                   <form role="form">
                     <div class="search-box">
                       <input class="form-control" type="text" placeholder="Search..."/>
+                      <input type="hidden" id="" value="">
                       <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                   </form>
@@ -378,42 +165,40 @@
                 <div class="widget">
                   <h5 class="widget-title font-alt">Blog Categories</h5>
                   <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
+                    <li><a href="#">景點 - {{$attractions->count()}}</a></li>
+                    <li><a href="#">小吃店 - 3</a></li>
+                    <li><a href="#">旅館 - 12</a></li>
                     <li><a href="#">Marketing - 1</a></li>
                     <li><a href="#">Wordpress - 16</a></li>
                   </ul>
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Popular Posts</h5>
+                  <h5 class="widget-title font-alt">新增的文章</h5>
                   <ul class="widget-posts">
-
+                    @foreach( $posts as $post )
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src=" {{ asset('front_assets/images/rp-3.jpg') }}" alt="Post Thumbnail"/></a></div>
+                      @if(@$post->Attraction_img)
+                      <div class="widget-posts-image"><a href="#"><img src="{{ @$post->Attraction_img->path_img }}" alt="Post Thumbnail"/></a></div>
+                      @else
+                      <div class="widget-posts-image"><a href="#"><img src="" alt="Post Thumbnail"/></a></div>
+                      @endif
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
+                        <div class="widget-posts-title"><a href="#">{{ $post->name }}</a></div>
                         <div class="widget-posts-meta">23 january</div>
                       </div>
                     </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src=" {{ asset('front_assets/images/rp-4.jpg') }}" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
+                    @endforeach
                   </ul>
                 </div>
-                <div class="widget">
+                <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Tag</h5>
                   <div class="tags font-serif"><a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
                   </div>
-                </div>
+                </div> -->
                 <div class="widget">
                   <h5 class="widget-title font-alt">Text</h5>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.
                 </div>
-                <div class="widget">
+                <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Recent Comments</h5>
                   <ul class="icon-list">
                     <li>Maria on <a href="#">Designer Desk Essentials</a></li>
@@ -422,12 +207,12 @@
                     <li>Jack on <a href="#">Bottle Mockup</a></li>
                     <li>Mark on <a href="#">Our trip to the Alps</a></li>
                   </ul>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </section>
-        <div class="module-small bg-dark">
+        <!-- <div class="module-small bg-dark">
           <div class="container">
             <div class="row">
               <div class="col-sm-3">
@@ -467,14 +252,14 @@
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src=" {{ asset('front_assets/images/rp-1.jpg') }}" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="front_assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
                         <div class="widget-posts-meta">23 january</div>
                       </div>
                     </li>
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src=" {{ asset('front_assets/images/rp-2.jpg') }}" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="front_assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
                         <div class="widget-posts-meta">15 February</div>
@@ -501,7 +286,7 @@
           </div>
         </footer>
       </div>
-      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div> -->
     </main>
     <!--
     JavaScripts

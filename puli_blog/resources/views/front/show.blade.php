@@ -174,7 +174,7 @@
 
               <!-- START留言 -->
                 <div class="comments">
-                  <h4 class="comment-title font-alt">There are 3 comments</h4>
+                  <h4 class="comment-title font-alt">總共留言 {{ $TotalComment->count() }}</h4>
 
 
                   <div class="comment clearfix">
@@ -381,6 +381,7 @@
     <script src=" {{ asset('front_assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js') }}"></script>
     <script src=" {{ asset('front_assets/js/plugins.js') }}"></script>
     <script src=" {{ asset('front_assets/js/main.js') }}"></script>
+
     <Script>
       $(document).ready(function(){
 
@@ -388,7 +389,7 @@
         function GetComment(){
           $.ajax({
             type: "GET",
-            url : "/comment/categroy/{{ $post->id }}/post/{{$attraction->id}}",
+            url : "/comment/categroy/1/post/{{$attraction->id}}",
             success : function(response){
               console.log(response);
 
@@ -435,7 +436,7 @@
             type : "POST",
             data : data,
             dataType : "JSON",
-            url : "/comment/categroy/{{ $post->id }}/post/{{$attraction->id}}",
+            url : "/comment/categroy/1/post/{{$attraction->id}}",
             success : function(response){
 
               if( response.status == 400 ){

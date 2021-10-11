@@ -24,7 +24,7 @@ class AttractionControll extends Controller
     {
         //
         if(Auth::user()->is_admin){
-            var_dump(Auth::user()->is_admin);
+
             $user = Auth::user();
 
             if($user->id){
@@ -125,10 +125,6 @@ class AttractionControll extends Controller
 
             $attraction = Attractions::find($id);
 
-            session('attraction_id','null');
-
-            session(['attraction_id' => $attraction->id]);
-
             return view('Backadmin.AttractionsControll.show',['attraction' => $attraction,'user' => $user]);
         }
     }
@@ -148,6 +144,12 @@ class AttractionControll extends Controller
         //
         $users = Auth::user();
         $attraction = Attractions::findOrFail($id);
+
+
+        session('attraction_id','null');
+
+        session(['attraction_id' => $attraction->id]);
+
 
         return view('Backadmin.AttractionsControll.edit',['Attraction' => $attraction ,'user' => $users]);
 

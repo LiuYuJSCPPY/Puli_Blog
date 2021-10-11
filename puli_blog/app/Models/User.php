@@ -44,6 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+
     public function commet(){
         return $this->hasMany(comment::class,'uesr_id','id');
     }

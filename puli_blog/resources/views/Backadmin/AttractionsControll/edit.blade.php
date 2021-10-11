@@ -103,7 +103,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">價位資料:(價位庫) <a class="btn btn-primary" href="{{ route('Material',['id' =>$Attraction->id]) }}">前往景點價格</a></label>
+                                        <label class="col-sm-2 col-form-label">價位資料:(價位庫) <a class="btn btn-primary" href="{{ route('admin.Material',['id' =>$Attraction->id]) }}">前往景點價格</a></label>
                                         <div class="col-sm-12">
                                         @if( count($Attraction->Attraction_price) == 0 )
                                             <div class="card-block table-border-style">
