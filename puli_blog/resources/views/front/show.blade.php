@@ -62,67 +62,33 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Titan</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">埔里</a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a>
-                <ul class="dropdown-menu">
-                  <li><a href="index_mp_fullscreen_video_background.html">Default</a></li>
-                  <li><a href="index_op_fullscreen_gradient_overlay.html">One Page</a></li>
-                  <li><a href="index_agency.html">Agency</a></li>
-                  <li><a href="index_portfolio.html">Portfolio</a></li>
-                  <li><a href="index_restaurant.html">Restaurant</a></li>
-                  <li><a href="index_finance.html">Finance</a></li>
-                  <li><a href="index_landing.html">Landing Page</a></li>
-                  <li><a href="index_photography.html">Photography</a></li>
-                  <li><a href="index_shop.html">Shop</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Headers</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Static Image Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_static.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Flexslider Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_flexslider.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Video Background Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_video_background.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Text Rotator Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_text_rotator.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Gradient Overlay Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="documentation.html" data-toggle="dropdown">Documentation</a>
-                <ul class="dropdown-menu">
-                  <li><a href="documentation.html#contact">Contact Form</a></li>
-                  <li><a href="documentation.html#reservation">Reservation Form</a></li>
-                  <li><a href="documentation.html#mailchimp">Mailchimp</a></li>
-                  <li><a href="documentation.html#gmap">Google Map</a></li>
-                  <li><a href="documentation.html#plugin">Plugins</a></li>
-                  <li><a href="documentation.html#changelog">Changelog</a></li>
-                </ul>
-              </li>
+              <li ><a  href="{{ route('attractions.index') }}">首頁</a></li>
+              <li ><a  href="#">景點</a></li>
+              @if(Auth::user())
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{Auth::user()->name }}</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">管理台</a>
+                    </li>
+                    <li class="dropdown">
+                      <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                          <button  type="submit">登出</button >
+                      </form>
+                    </li>
+                  </ul>
+                </li>
+              @else
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">未登入</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown"><a href="{{ route('login') }}" >登入</a>
+                    </li>
+                  </ul>
+                </li>
+              @endif
             </ul>
           </div>
         </div>
@@ -178,40 +144,10 @@
 
 
                   <div class="comment clearfix">
-                    <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/ryanbattles/128.jpg" alt="avatar"/></div>
-                    <div class="comment-content clearfix">
-                      <div class="comment-author font-alt"><a href="#">John Doe</a></div>
-                      <div class="comment-body">
-                        <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
-                      </div>
-                      <div class="comment-meta font-alt">Today, 14:55 - <a href="#">Reply</a>
-                      </div>
-                    </div>
 
-                    <div class="comment clearfix">
-                      <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/draganbabic/128.jpg" alt="avatar"/></div>
-                      <div class="comment-content clearfix">
-                        <div class="comment-author font-alt"><a href="#">Mark Stone</a></div>
-                        <div class="comment-body">
-                          <p>Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
-                        </div>
-                        <div class="comment-meta font-alt">Today, 15:34 - <a href="#">Reply</a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  <div class="comment clearfix">
-                    <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg" alt="avatar"/></div>
-                    <div class="comment-content clearfix">
-                      <div class="comment-author font-alt"><a href="#">Andy</a></div>
-                      <div class="comment-body">
-                        <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
-                      </div>
-                      <div class="comment-meta font-alt">Today, 14:59 - <a href="#">Reply</a>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
 
 

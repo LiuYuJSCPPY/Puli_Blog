@@ -28,13 +28,18 @@ class AttractionControll extends Controller
         }else{
         $attractions = Attractions::paginate(5);
 
-        return view('front.index',['attractions' => $attractions]);
+        $posts = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
+
+        return view('front.index',['attractions' => $attractions,'posts' => $posts]);
         }
 
 
     }
 
     public function show($id){
+        if(Auth::user()){
+
+        }
 
         $post = post::where('post_categroy_id' ,'=',1)->where('artice_id','=',$id)->first();
         $attractions = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
