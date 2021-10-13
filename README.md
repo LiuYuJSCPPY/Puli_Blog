@@ -31,6 +31,12 @@
 * 資料庫管理工具：MySQL Workbench
 
 
+## 專案啟動方式
+1. 下載專案壓縮檔或使用git clone至個人電腦 
+```
+git clone https://github.com/
+```
+
 
 
 
