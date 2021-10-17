@@ -40,6 +40,10 @@ https://github.com/LiuYuJSCPPY/Puli_Blog.git
 
 
 
+## 遇到的問題
+
+1. 
+
 
 
 
