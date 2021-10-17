@@ -40,9 +40,32 @@ https://github.com/LiuYuJSCPPY/Puli_Blog.git
 
 
 
-## 遇到的問題
+## 過程中遇到的問題與除錯(debug)
 
-1. 
+1. 景點的圖片跟景點資料是不一樣，前台抓不到景點的圖片。
+
+* 以下的程式碼是使用DB方式使用，然後在前台頁面是沒有出來圖片的路徑的
+* 
+Laravel 程式碼
+  ```php
+  $Post_Attractions = DB::table('attractions')->orderBy('id','DESC')->limit(5)->get();
+  ```
+  
+前台Blade 程式碼
+```php
+  $Post_Attractions->Attraction_img->path_img;
+  因為我使用的是DB方式去抓資料，所以它是抓不到別的資料庫的資料
+ ```
+ 
+ 發現問題
+ 
+ DB是不能使用ORM的方式去抓別的資料的
+ 
+  
+3.  問題1 (使用DB是不能使用ORM 的函數):取得最新5個景點的文章，Attractions Model來取得文章的圖片路徑
+```php
+
+```
 
 
 
