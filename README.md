@@ -92,7 +92,15 @@
 ## 資料表設計
 
  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E8%A7%80%E5%85%89-%E8%B3%87%E6%96%99%E5%BA%AB.drawio.png)
+  * uesr : Laravel 內建的使用者資料表。
+  * post : user_id 為 belong_to 與 user(id) 資料表做關聯 ，post_categroy_id 為 belong_to 與 post_categroy 資料表做關聯 ，artice_id 為 foreign key 與 Attractions 資料表做關聯。
+  * post_categroy : post_categroy_id 為 has_Many 與 post_categroy 資料表做關聯。
+  * comments : posts_id 為 belong_to 與 post 資料表做關聯，user_id 為 belong_to 與 user_id 資料表做關聯。
+  * Attractions : 文章資料如: name、add、artice、display(bool)。
+  * Attractions_img :Attractions_id 為 Foreign key 與 Attractions 資料表做關聯
+  * Attractions_price :Attractions_id 為 Foreign key 與 Attractions 資料表做關聯
 
+## 本地端建立環境
 ### 安裝
 
 1. 遠端下載repo
