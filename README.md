@@ -31,11 +31,25 @@
   2. 單文章
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%96%AE%E6%96%87%E7%AB%A0.PNG)
   
-  3. 登入
+  3. 登入(登入是可以使用留言板，登入會員才可以使用後台)
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2.PNG)
   
   4. 註冊會員
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E7%94%B3%E8%AB%8B%E6%9C%83%E5%93%A1.PNG)
+  
+* 後端
+  1. 後台首頁
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%BE%8C%E7%AB%AF%E9%A6%96%E9%A0%81.PNG)
+  2. 新增文章
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%96%B0%E5%A2%9E%E6%96%87%E7%AB%A0.PNG)
+  3. 單文章
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9F%A5%E7%9C%8B%E5%96%AE%E6%96%87%E7%AB%A0.PNG)
+  4. 更新文章
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9B%B4%E6%96%B0%E6%96%87%E7%AB%A0.PNG)
+  5. 後台首頁
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%BE%8C%E7%AB%AF%E9%A6%96%E9%A0%81.PNG)
+  6. 後台首頁
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%BE%8C%E7%AB%AF%E9%A6%96%E9%A0%81.PNG)
 
 ## 環境配置
 * 語言：PHP ^8.0.3
