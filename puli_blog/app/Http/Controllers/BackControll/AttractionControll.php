@@ -98,7 +98,7 @@ class AttractionControll extends Controller
                 ]);
                 }
 
-            return redirect()->route('admin.Material',["id" => $attractions->id]);
+            return redirect()->route('admin.attraction.index');
             }
 
         }else{

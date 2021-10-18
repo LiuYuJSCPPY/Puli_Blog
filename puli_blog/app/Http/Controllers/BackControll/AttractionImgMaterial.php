@@ -120,16 +120,6 @@ class AttractionImgMaterial extends Controller
                     'ss' => $validator,
                 ]);
 
-                $update->name = $request->input('name');
-                $update->price = $request->input('price');
-                $update->update();
-
-                return response()->json([
-                    'status' => 200,
-                    'update' => $update,
-                    'message' => "已經更新囉!!",
-                ]);
-
             }else{
 
                 $update->name = $request->input('name');
@@ -194,7 +184,7 @@ class AttractionImgMaterial extends Controller
                     'attractions_id' => $attraction->id,
                     ]);
 
-                return back();
+                return redirect()->route('admin.AttractionImgs',['post_id' => $attraction->id ]);
             } else {
                 return back()->with('test','名稱或檔案未填寫');
         }
@@ -239,7 +229,6 @@ class AttractionImgMaterial extends Controller
         $img->update(['name' => $Name]);
 
 
-
         // 如果有抓到圖片ID，那就要做把之前的圖片刪掉在新增新的圖片
         if($request->file('imgpath') != null){
 
@@ -263,6 +252,8 @@ class AttractionImgMaterial extends Controller
             $img->update(['path_img' => asset(Storage::disk('public')->url($ImgPath))]);
 
             return back()->with('success file!');
+        }else{
+            return back();
         }
 
 

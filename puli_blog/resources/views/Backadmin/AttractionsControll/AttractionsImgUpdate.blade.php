@@ -121,7 +121,7 @@
 
                                             <button class="btn btn-mat btn-primary " type="submit">送出</button>
                                             <button class="btn btn-mat btn-danger " type="reset" >重新填寫</button>
-                                            <a class="btn btn-mat btn-success " href="" >下一步</a>
+                                            <a class="btn btn-mat btn-success " href="{{route('admin.AttractionImgs',['post_id' => $attraction->id])}}" >首頁</a>
 
                                         </form>
                                     </div>

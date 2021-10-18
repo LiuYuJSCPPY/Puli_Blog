@@ -93,11 +93,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">圖片:(圖片庫)</label>
                                         <div class="col-sm-4">
-                                        @if( count($Attraction->Attraction_img) == 0 )
-                                            <a href="{{ route('admin.AttractionImg.create',['post_id' => $Attraction->id]) }}" class="btn btn-primary">新增圖片</a>
-                                        @else
                                             <a class="btn btn-mat btn-primary" href="{{ route('admin.AttractionImgs',['post_id' => $Attraction->id]) }}" >圖片庫</a>
-                                        @endif
                                         </div>
                                     </div>
 

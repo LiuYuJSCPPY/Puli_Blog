@@ -303,7 +303,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="AttractionModalLabel">New message</h5>
+                                    <h5 class="modal-title" id="AttractionModalLabel">新增資料</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -372,11 +372,11 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">刪除</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">刪除資料</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h4>你確定要刪除資料嗎? ?</h4>
+                                    <h4>你確定要刪除資料嗎?</h4>
                                     <input type="hidden" name="" id="delete_attraction" value="{{ $attraction->id }}">
                                     <input type="hidden" name="" id='delete_id'>
                                 </div>
@@ -590,7 +590,8 @@ $(document).ready(function(){
                 $('#save_msgList').html('');
                 $('#success_message').addClass('alert alert-success');
                 $('#success_message').text(response.message);
-                $('#Update_AttractionModal').find('input').val('');
+                $('#Update_AttractionModal').find('input #update_name').val('');
+                $('#Update_AttractionModal').find('input #update_price').val('');
                 $('.udpate_attraction').text("UPDATE");
                 $('#Update_AttractionModal').modal('hide');
                 test();
@@ -645,7 +646,7 @@ $(document).ready(function(){
                     $('#save_msgList').html("");
                     $('#success_message').addClass('alert alert-success');
                     $('#success_message').text(response.message);
-                    $('.delete_attraction_price').text('YES Delete');
+                    $('.delete_attraction_price').text('確定');
                     $('#delete_AttractionModal').modal('hide');
                     test();
                 }
