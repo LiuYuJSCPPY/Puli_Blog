@@ -42,13 +42,14 @@ class CommentControll extends Controller
 
             return response()->json([
                 'status' => 200,
+                'message' => '成功',
                 'PostCommebt' => $post_comment,
             ]);
 
         }else {
             return response()->json([
                 'status' => 400,
-                'error' => "請先登入",
+                'message' => "請先登入",
             ]);
         }
 

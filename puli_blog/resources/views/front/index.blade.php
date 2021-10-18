@@ -8,7 +8,7 @@
     Document Title
     =============================================
     -->
-    <title>Titan | Multipurpose HTML5 Template</title>
+    <title>埔里旅遊網</title>
     <!--
     Favicons
     =============================================
@@ -61,7 +61,7 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="{{ route('attractions.index') }}">埔里</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="{{ route('attractions.index') }}">埔里旅遊網</a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -80,10 +80,10 @@
                 </ul>
               </li>
               @else
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ @$user->name }}</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ Auth::user()->name }}</a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">管理台</a>
+                  <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">後台管理台</a>
 
                   </li>
                   <li class="dropdown">
@@ -122,16 +122,16 @@
                 @foreach( $attractions as $attraction)
                   <div class="col-md-6 col-lg-6">
                     <div class="post">
-                    {{$attraction->id}}
+
                     @if( count($attraction->Attraction_img) != 0)
 
-                      <div class="post-thumbnail"><a href="{{ route('attractions.show',['id' => $attraction->id] ) }}"><img width="860px" height="460px" src=" {{ $attraction->Attraction_img[0]->path_img }}" alt="{{ $attraction->Attraction_img[0]->name }}"/></a></div>
+                      <div class="post-thumbnail"><a href="{{ route('attractions.show',['id' => $attraction->id] ) }}"><img width="760px" height="360px" src=" {{ $attraction->Attraction_img[0]->path_img }}" alt="{{ $attraction->Attraction_img[0]->name }}"/></a></div>
                     @else
                         <div class="post-thumbnail"><a href="{{ route('attractions.show',['id' => $attraction->id] ) }}"><img src=" {{ asset('front_assets/images/post-2.jpg') }}" alt="Blog-post Thumbnail"/></a></div>
                       @endif
                       <div class="post-header font-alt">
                         <h2 class="post-title"><a href="#">{{ $attraction->name }}</a></h2>
-                        <div class="post-meta">官方網站:&nbsp;<a href="{{$attraction->offical}}">{{$attraction->name}}</a>&nbsp;| 公休: {{ $attraction->public_holiday }} | 3 Comments
+                        <div class="post-meta">官方網站:&nbsp;<a href="{{$attraction->offical}}">{{$attraction->name}}</a>&nbsp;| 公休: {{ $attraction->public_holiday }}
                         </div>
                       </div>
                       <div class="post-entry">
@@ -154,37 +154,34 @@
 
               <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
                 <div class="widget">
-                  <form role="form">
+                  <!-- <form role="form">
                     <div class="search-box">
                       <input class="form-control" type="text" placeholder="Search..."/>
                       <input type="hidden" id="" value="">
                       <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                     </div>
-                  </form>
+                  </form> -->
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
+                  <h5 class="widget-title font-alt">分類</h5>
                   <ul class="icon-list">
-                    <li><a href="#">景點 - {{$attractions->count()}}</a></li>
-                    <li><a href="#">小吃店 - 3</a></li>
-                    <li><a href="#">旅館 - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
+                    <li><a href="#">景點 - {{$posts->count()}}</a></li>
+
                   </ul>
                 </div>
                 <div class="widget">
                   <h5 class="widget-title font-alt">新增的文章</h5>
                   <ul class="widget-posts">
-                    @foreach( $posts as $post )
+                    @foreach( $post as $apost )
                     <li class="clearfix">
-                      @if(@$post->Attraction_img)
-                      <div class="widget-posts-image"><a href="#"><img src="{{ @$post->Attraction_img->path_img }}" alt="Post Thumbnail"/></a></div>
+
+                      @if($apost->Attraction_img->count() != 0)
+                        <div class="widget-posts-image"><a href="{{ route('attractions.show',['id' => $apost->id]) }}"><img src="{{ $apost->Attraction_img->first()->path_img }}" alt="Post Thumbnail"/></a></div>
                       @else
-                      <div class="widget-posts-image"><a href="#"><img src="" alt="Post Thumbnail"/></a></div>
+                        <div class="widget-posts-image"><a href="{{ route('attractions.show',['id' => $apost->id]) }}"><img src="{{ asset('front_assets/images/post-2.jpg') }}" alt="Post Thumbnail"/></a></div>
                       @endif
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">{{ $post->name }}</a></div>
-                        <div class="widget-posts-meta">23 january</div>
+                        <div class="widget-posts-title"><a href="{{ route('attractions.show',['id' => $apost->id]) }}">{{ $apost->name }}</a></div>
                       </div>
                     </li>
                     @endforeach
@@ -195,9 +192,9 @@
                   <div class="tags font-serif"><a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
                   </div>
                 </div> -->
-                <div class="widget">
+                <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Text</h5>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.
-                </div>
+                </div> -->
                 <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Recent Comments</h5>
                   <ul class="icon-list">

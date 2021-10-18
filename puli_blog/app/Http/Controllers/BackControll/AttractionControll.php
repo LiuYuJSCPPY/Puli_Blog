@@ -23,7 +23,7 @@ class AttractionControll extends Controller
     public function index()
     {
         //
-        if(Auth::user()->is_admin){
+        if(Auth::user()){
 
             $user = Auth::user();
 
@@ -36,7 +36,7 @@ class AttractionControll extends Controller
 
         }else{
 
-            return response('你不是會員');
+            return back()->json(['status' => 400,'message' => "找不到使用者"]);
         }
 
     }
@@ -98,7 +98,7 @@ class AttractionControll extends Controller
                 ]);
                 }
 
-            return redirect()->route('Material',["id" => $attractions->id]);
+            return redirect()->route('admin.Material',["id" => $attractions->id]);
             }
 
         }else{

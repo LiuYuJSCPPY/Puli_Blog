@@ -43,7 +43,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::put('Img/{post_id}/img/{M_id}/Update',[AttractionImgMaterial::class,'AttractionImgUpdate'])->name('attractionImg.update');
         Route::get('{post_id}/img/create',[AttractionImgMaterial::class,'AttractionImgCreate'])->name('AttractionImg.create');
         Route::get('Img/{post_id}/img/{M_id}/edit',[AttractionImgMaterial::class,'AttractionImgEdit'])->name('AttractionImg.edit');
-
+        Route::delete('Img/{post_id}/img/{M_id}/delete',[AttractionImgMaterial::class,'AttractionImgDelete'])->name('attractionImg.delete');
         // Route::get('Material/update/{post_id}/{id}/test',[AttractionImgMaterial::class,'teatMaterialUpdate']);
 
         // 圖片庫

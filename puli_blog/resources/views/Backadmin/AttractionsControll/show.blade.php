@@ -2,14 +2,6 @@
 
 @section('show')
 
-
-@php
-
-    $attraction->Attraction_price ? $attraction_prices = $attraction->Attraction_price  : [] ;
-    $attraction->Attraction_img ? $Attraction_imgs = $attraction->Attraction_img : $Attraction_imgs= [] ;
-@endphp
-
-
 <div class="pcoded-inner-content">
     <!-- Main-body start -->
     <div class="main-body">
@@ -21,7 +13,7 @@
                         <div class="page-header-title">
                             <i class="icofont icofont-file-code bg-c-blue"></i>
                             <div class="d-inline">
-                                <h4>景點新增圖片</h4>
+                                <h4>景點資料</h4>
                             </div>
                         </div>
                     </div>
@@ -29,14 +21,13 @@
                         <div class="page-header-breadcrumb">
                             <ul class="breadcrumb-title">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
+                                    <a href="{{ route('admin.attraction.index')}}">
                                         <i class="icofont icofont-home"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.index')}}">景點文章</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.show',['attraction' => $attraction->id ])}}">景點資料</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.AttractionImg.create',['post_id' => $attraction->id])}}">景點圖檔資料</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -100,7 +91,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">圖片:</label>
                                         <div class="col-sm-6">
-                                            @if( count($Attraction_imgs) == 0 )
+                                            @if( count($attraction->Attraction_img) == 0 )
 
                                             <p>尚未有圖片</p>
 
@@ -132,7 +123,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach($attraction_prices as $price)
+                                                            @foreach($attraction->Attraction_price as $price)
                                                             <tr>
                                                                 <th scope="row">{{ $price->id}}</th>
                                                                 <td>{{ $price->name }}</td>

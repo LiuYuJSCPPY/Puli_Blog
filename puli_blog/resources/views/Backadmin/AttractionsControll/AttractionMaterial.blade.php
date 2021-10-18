@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GURU Able - Free Lite Admin Template </title>
+    <title>後台管理系統</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,7 +91,8 @@
                             <i class="ti-search"></i>
                         </a>
                         <a href="index.html">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                            使用者: {{Auth::user()->name}}
+
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
@@ -111,7 +112,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
+                            <!-- <li class="header-notification">
                                 <a href="#!">
                                     <i class="ti-bell"></i>
                                     <span class="badge bg-c-pink"></span>
@@ -152,38 +153,28 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="user-profile header-notification">
                                 <a href="#!">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>name</span>
+                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                    <span>{{Auth::user()->name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
                                         <a href="#!">
-                                            <i class="ti-settings"></i> Settings
+                                            <i class="ti-settings"></i> 設定
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-lock"></i> Lock Screen
-                                        </a>
-                                    </li>
+
                                     <li>
                                         <a href="#">
                                             <i class="ti-lock"></i> 是否是管理者
-
+                                            @if(Auth::user()->is_admin === 1)
+                                            是管理者
+                                            @else
+                                            不是管理者
+                                            @endif
                                         </a>
                                     </li>
                                     <li>
@@ -192,8 +183,8 @@
                                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                                <i class="ti-layout-sidebar-left"></i>{{ __('Log Out') }}</button>
-                                {{ __('Log Out') }}
+                                                <i class="ti-layout-sidebar-left"></i></button>
+                                {{ __('登出') }}
                             </x-dropdown-link>
 
                                         </form>
@@ -208,54 +199,28 @@
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
-                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart &amp; Maps</div>
-                        <ul class="pcoded-item pcoded-left-item">
-                            <li>
-                                <a href="chart.html">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Chart</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="map-google.html">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Maps</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="pcoded-hasmenu">
-                                <a href="javascript:void(0)">
-                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Pages</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class=" ">
-                                        <a href="auth-normal-sign-in.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="auth-sign-up.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="sample-page.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
 
-                        </ul>
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms"></div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="{{route('attractions.index')}}">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">部落格首頁</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('admin.attraction.index')}}">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">景點</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
 
                     </nav>
                     <div class="pcoded-content">
@@ -270,8 +235,8 @@
                                                 <div class="page-header-title">
                                                     <i class="icofont icofont-table bg-c-blue"></i>
                                                     <div class="d-inline">
-                                                        <h4>Bootstrap Basic Tables</h4>
-                                                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                                                        <h4>景點價目表</h4>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -279,13 +244,11 @@
                                                 <div class="page-header-breadcrumb">
                                                    <ul class="breadcrumb-title">
                                                     <li class="breadcrumb-item">
-                                                        <a href="index.html">
+                                                        <a href="{{route('admin.attraction.index')}}">
                                                             <i class="icofont icofont-home"></i>
                                                         </a>
                                                     </li>
-                                                    <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a>
-                                                    </li>
-                                                    <li class="breadcrumb-item"><a href="#!">Basic Table</a>
+                                                    <li class="breadcrumb-item"><a href="{{route('admin.Material',['id' => $attraction->id])}}">景點價目表</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -300,12 +263,14 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>{{$attraction->name}}</h5>
-                                            <h1 id=""></h1>
-                                            <span>use class <code>table-hover</code> inside table element</span>
+
+                                            <h2 id="">景點名稱: {{$attraction->name}}</h2>
+
                                             <ul id="save_msgList"></ul>
-                                            <div class="card-header-right">  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button> <a href="{{ route('admin.attraction.index') }}" class="btn btn-warning"> 首頁 </a></div>
-                                        </div>
+                                            <div class="card-header-right">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AttractionModal" data-bs-whatever="@mdo">新增景點價格</button>
+                                                <a href="{{ route('admin.attraction.index') }}" class="btn btn-warning"> 首頁 </a></div>
+                                            </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
                                                 <div id="success_message"></div>
@@ -407,17 +372,17 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Student Data</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">刪除</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h4>Confirm to Delete Data ?</h4>
+                                    <h4>你確定要刪除資料嗎? ?</h4>
                                     <input type="hidden" name="" id="delete_attraction" value="{{ $attraction->id }}">
                                     <input type="hidden" name="" id='delete_id'>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary delete_attraction_price">Yes Delete</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">返回</button>
+                                    <button type="button" class="btn btn-primary delete_attraction_price">是的</button>
                                 </div>
                             </div>
                         </div>
@@ -425,11 +390,7 @@
                     <!-- END刪除 -->
 
                 </div>
-                <div class="fixed-button">
-                    <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-                    </a>
-                </div>
+
             </div>
         </div>
 
@@ -543,7 +504,8 @@ $(document).ready(function(){
                     $('#save_msgList').html("");
                     $('#success_message').addClass('alert alert-success');
                     $('#success_message').text(response.message);
-                    $('#AttractionModal').find('input').val('');
+                    $('#AttractionModal').find('input #name').val('');
+                    $('#AttractionModal').find('input #price').val('');
                     $('.add_attraction').text('Save');
                     $('#AttractionModal').modal('hide');
                     test();

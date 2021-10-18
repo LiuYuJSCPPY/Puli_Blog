@@ -13,7 +13,7 @@ class Attractions extends Model
 
     // 圖片
     public function Attraction_img(){
-        return $this->hasMany(Attractions_img::class);
+        return $this->hasMany(Attractions_img::class,'attractions_id','id');
     }
 
     // 價錢

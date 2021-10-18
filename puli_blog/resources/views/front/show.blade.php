@@ -8,7 +8,7 @@
     Document Title
     =============================================
     -->
-    <title>Titan | Multipurpose HTML5 Template</title>
+    <title>埔里旅遊網</title>
     <!--
     Favicons
     =============================================
@@ -62,7 +62,7 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">埔里</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="{{ route('attractions.index') }}">埔里旅遊網</a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -71,7 +71,7 @@
               @if(Auth::user())
                 <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{Auth::user()->name }}</a>
                   <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">管理台</a>
+                    <li class="dropdown"><a  href="{{ route('admin.attraction.index') }}">後台管理台</a>
                     </li>
                     <li class="dropdown">
                       <form action="{{ route('logout') }}" method="post">
@@ -103,6 +103,7 @@
                 <div class="post">
 
                   @if (@$attraction->Attraction_img)
+
                     <div class="post-thumbnail"><img src="{{ @$attraction->Attraction_img->first()->path_img }}" alt="avatar"/></div>
                     @else
                     <div class="post-thumbnail"><img src="{{ asset('front_assets/images/post-4.jpg') }}" alt="Blog Featured Image"/></div>
@@ -110,7 +111,8 @@
 
                   <div class="post-header font-alt">
                     <h1 class="post-title">{{ $attraction->name }}</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">{{ @$attraction->user->name }}</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <div class="post-meta">作者:&nbsp;<a href="#">{{ @$attraction->user->name }}</a>| 地址: {{$attraction->add}}
+
                     </div>
                   </div>
                   <div class="post-entry">
@@ -120,28 +122,40 @@
                 <div class="price">
                 <h4 class="comment-title font-alt">景點價格</h4>
                 <div class="menu col-sm-12">
-                @foreach($attraction->Attraction_price as $attraction_price  )
+
+                  @if($attraction->Attraction_price->count())
+                    @foreach($attraction->Attraction_price as $attraction_price  )
+                    <div class="menu col-sm-12">
+                      <div class="row">
+                          <div class="col-sm-6">
+                          <h4 class="menu-title font-alt">{{ $attraction_price->name }}</h4>
+                          <!-- <div class="menu-detail font-serif">Mushroom / Veggie / White Sources</div> -->
+                          </div>
+                          <div class="col-sm-6 menu-price-detail">
+                          <h4 class="menu-price font-alt">TW  {{ $attraction_price->price }}</h4>
+                          </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  @else
                   <div class="menu col-sm-6">
                     <div class="row">
                         <div class="col-sm-6">
-                        <h4 class="menu-title font-alt">{{ $attraction_price->name }}</h4>
+                        <h4 class="menu-title font-alt">目前沒有門票價</h4>
                         <!-- <div class="menu-detail font-serif">Mushroom / Veggie / White Sources</div> -->
-                        </div>
-                        <div class="col-sm-4 menu-price-detail">
-                        <h4 class="menu-price font-alt">TW  {{ $attraction_price->price }}</h4>
                         </div>
                     </div>
                   </div>
-                @endforeach
+                  @endif
                 </div>
 
 
                 </div>
 
               <!-- START留言 -->
-                <div class="comments">
-                  <h4 class="comment-title font-alt">總共留言 {{ $TotalComment->count() }}</h4>
 
+                  <h4 class="comment-title font-alt">總共留言 : {{ $TotalComment->count() }}</h4>
+                  <div class="comments">
 
                   <div class="comment clearfix">
 
@@ -168,35 +182,34 @@
                 <div class="widget">
                   <form role="form">
                     <div class="search-box">
-                      <input class="form-control" type="text" placeholder="Search..."/>
+                      <!-- <input class="form-control" type="text" placeholder="Search..."/>
                       <input type="hidden" id="" value="">
-                      <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                      <button class="search-btn" type="submit"><i class="fa fa-search"></i></button> -->
                     </div>
                   </form>
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
+                  <h5 class="widget-title font-alt">分類</h5>
                   <ul class="icon-list">
-                    <li><a href="#">景點 - 7</a></li>
-                    <li><a href="#">小吃店 - 3</a></li>
-                    <li><a href="#">旅館 - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
+                    <li><a href="#">景點 - {{ $posts->count() }}</a></li>
+
                   </ul>
                 </div>
                 <div class="widget">
                   <h5 class="widget-title font-alt">新增的文章</h5>
                   <ul class="widget-posts">
-                    @foreach( $Atraction as $post )
+
+                    @foreach( $Posts_Attractions as $post )
+
                     <li class="clearfix">
-                      @if(@$post->Attraction_img)
-                      <div class="widget-posts-image"><a href="#"><img src="{{ @$post->Attraction_img->path_img }}" alt="Post Thumbnail"/></a></div>
+                      @if(@$post->Attraction_img->count() != 0)
+                        <div class="widget-posts-image"><a href="{{ route('attractions.show',['id' => $post->id]) }}"><img src="{{ @$post->Attraction_img->first()->path_img }}" alt="Post Thumbnail"/></a></div>
                       @else
-                      <div class="widget-posts-image"><a href="#"><img src="" alt="Post Thumbnail"/></a></div>
+                        <div class="widget-posts-image"><a href="{{ route('attractions.show',['id' => $post->id]) }}"><img src="{{ asset('front_assets/images/post-2.jpg') }}" alt="Post Thumbnail"/></a></div>
                       @endif
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">{{ $post->name }}</a></div>
-                        <div class="widget-posts-meta">23 january</div>
+                        <div class="widget-posts-title"><a href="{{ route('attractions.show',['id' => $post->id]) }}">{{ $post->name }}</a></div>
+                        <div class="widget-posts-meta"></div>
                       </div>
                     </li>
                     @endforeach
@@ -207,9 +220,9 @@
                   <div class="tags font-serif"><a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
                   </div>
                 </div> -->
-                <div class="widget">
+                <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Text</h5>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.
-                </div>
+                </div> -->
                 <!-- <div class="widget">
                   <h5 class="widget-title font-alt">Recent Comments</h5>
                   <ul class="icon-list">
@@ -377,13 +390,16 @@
 
               if( response.status == 400 ){
                 $('.form-group').append('<div class="alert alert-danger" role="alert">\
-                  <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-coffee"></i><strong>' +response.error + '!</strong> 您尚未登入\
+                  <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-coffee"></i><strong>' +response.message + '!</strong> 您尚未登入\
                 </div>');
-                console.log(response.error);
+                console.log(response.message);
               }else{
                 $(".comments").html("");
                 $('.form-group').find('input').val("");
                 $('.form-group').find('textarea').val("");
+                $('.form-group').append('<div class="alert alert-success" role="alert">\
+                  <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-coffee"></i><strong>' +response.message + '!</strong> 成功留言!\
+                </div>');
                 GetComment();
               }
             }

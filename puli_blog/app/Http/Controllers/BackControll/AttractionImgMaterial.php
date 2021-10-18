@@ -211,10 +211,11 @@ class AttractionImgMaterial extends Controller
 
     // 該文章圖片庫
     public function AttractionImg($post_id){
+
         $attraction = Attractions::findOrFail($post_id);
         $Imgs=  Attractions_img::where('attractions_id' ,'=', $post_id)->get();
-        $users = Auth::user();
-        return view('Backadmin.AttractionsControll.AttractionsImg',['post_id' =>$attraction,'Imgs' => $Imgs,'user' => $users]);
+
+        return view('Backadmin.AttractionsControll.AttractionsImg',['post_id' =>$attraction,'Imgs' => $Imgs]);
     }
 
 
@@ -223,7 +224,6 @@ class AttractionImgMaterial extends Controller
     public function AttractionImgEdit($post_id , $id){
     $attraction = attractions::find($post_id);
     $imgs = Attractions_img::findOrFail($id);
-
     return view('Backadmin.AttractionsControll.AttractionsImgUpdate',['attraction' => $attraction,'imgs' => $imgs]);
     }
 
@@ -243,8 +243,14 @@ class AttractionImgMaterial extends Controller
         // 如果有抓到圖片ID，那就要做把之前的圖片刪掉在新增新的圖片
         if($request->file('imgpath') != null){
 
+            $img = Attractions_img::findOrFail($id);
 
-            // Storage::disk('public')->delete('/Attractions/1632921820_route未加入參數值錯誤訊號.PNG');
+            // PHP rtrim(刪除http://127.0.0.1:8000/storage/ 字串數)
+            $path_Img = substr($img->path_img,30);
+
+            var_dump($path_Img);
+            Storage::disk('public')->delete($path_Img);
+
 
             $ImgName = time().'_'.$request->file('imgpath')->getClientOriginalName();
 
@@ -258,6 +264,23 @@ class AttractionImgMaterial extends Controller
 
             return back()->with('success file!');
         }
+
+
+    }
+
+    public function AttractionImgDelete($post_id, $M_id){
+
+        $img = Attractions_img::findOrFail($M_id);
+
+        $path_Img = substr($img->path_img,30);
+
+        var_dump($path_Img);
+        Storage::disk('public')->delete($path_Img);
+
+        Attractions_img::where('attractions_id','=',$post_id)->findOrFail($M_id)->delete();
+
+
+    return back();
 
 
     }

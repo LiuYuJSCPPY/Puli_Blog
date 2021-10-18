@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_categroy_id');
             $table->unsignedBigInteger("artice_id");
+            $table->foreign('artice_id')->on('attractions')->references('id')->onDelete("CASCADE")->onUpdate("CASCADE");
             $table->timestamps();
         });
     }

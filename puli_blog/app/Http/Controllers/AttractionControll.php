@@ -16,38 +16,30 @@ class AttractionControll extends Controller
 {
     //
     public function index(){
-        if (Auth::user()){
-            $user = Auth::user();
 
-            $attractions = Attractions::paginate(10);
+        $posts = Attractions::where('display','=',true)->get();
 
-            $posts = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
+        $attractions = Attractions::where('display','=',true)->paginate(5);
 
-            return view('front.index',['attractions' => $attractions,'user' => $user,'posts' => $posts]);
+        $post =  Attractions::orderBy('id','DESC')->where('display','=',true)->limit(5)->get();
 
-        }else{
-        $attractions = Attractions::paginate(5);
-
-        $posts = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
-
-        return view('front.index',['attractions' => $attractions,'posts' => $posts]);
-        }
-
+        return view('front.index',['attractions' => $attractions,'post' => $post,'posts' =>$posts]);
 
     }
 
     public function show($id){
-        if(Auth::user()){
 
-        }
+        $posts = Attractions::where('display','=',true)->get(); //
 
         $post = post::where('post_categroy_id' ,'=',1)->where('artice_id','=',$id)->first();
-        $attractions = DB::table('Attractions')->orderBy('id','DESC')->limit(5)->get();
+
+        $Posts_Attractions = Attractions::orderBy('id','DESC')->limit(5)->get();
+
         $attraction = Attractions::findOrFail($id);
+
         $comment = comment::where('posts_id','=',$post->id);
 
-
-        return view('front.show',['attraction' => $attraction ,'Atraction' => $attractions,'post' => $post,'TotalComment' =>$comment]);
+        return view('front.show',['attraction' => $attraction ,'Posts_Attractions' => $Posts_Attractions,'post' => $post,'TotalComment' =>$comment,'posts' => $posts]);
     }
 
 

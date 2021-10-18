@@ -22,14 +22,13 @@
                         <div class="page-header-breadcrumb">
                             <ul class="breadcrumb-title">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
+                                    <a href="{{route('admin.attraction.index')}}">
                                         <i class="icofont icofont-home"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.index')}}">景點文章</a>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.attraction.edit',['attraction' => $Attraction->id])}}">景點更新</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('admin.AttractionImg.create',['post_id' => $Attraction->id])}}">景點圖檔資料</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>

@@ -13,6 +13,6 @@ class Attractions_img extends Model
     protected $fillable = ["name","path_img","attractions_id"];
 
     public function Attractions(){
-        return $this->belongsTo(Attractions::class);
+        return $this->belongsTo(Attractions::class,'attractions_id','id');
     }
 }

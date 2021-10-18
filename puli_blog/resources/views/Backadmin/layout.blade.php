@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GURU Able - Free Lite Admin Template </title>
+    <title>後台管理系統</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,7 +91,8 @@
                             <i class="ti-search"></i>
                         </a>
                         <a href="index.html">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                            使用者: {{Auth::user()->name}}
+
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
@@ -111,7 +112,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
+                            <!-- <li class="header-notification">
                                 <a href="#!">
                                     <i class="ti-bell"></i>
                                     <span class="badge bg-c-pink"></span>
@@ -152,38 +153,24 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="user-profile header-notification">
                                 <a href="#!">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>{{$user->name}}</span>
+                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                    <span>{{Auth::user()->name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
                                         <a href="#!">
-                                            <i class="ti-settings"></i> Settings
+                                            <i class="ti-settings"></i> 設定
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-lock"></i> Lock Screen
-                                        </a>
-                                    </li>
+
                                     <li>
                                         <a href="#">
                                             <i class="ti-lock"></i> 是否是管理者
-                                            @if($user->is_admin === 1)
+                                            @if(Auth::user()->is_admin === 1)
                                             是管理者
                                             @else
                                             不是管理者
@@ -196,8 +183,8 @@
                                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                                <i class="ti-layout-sidebar-left"></i>{{ __('Log Out') }}</button>
-                                {{ __('Log Out') }}
+                                                <i class="ti-layout-sidebar-left"></i></button>
+                                {{ __('登出') }}
                             </x-dropdown-link>
 
                                         </form>
@@ -214,22 +201,23 @@
                     <nav class="pcoded-navbar">
 
 
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms"></div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
-                                    <a href="form-elements-component.html">
+                                    <a href="{{route('attractions.index')}}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Form Components</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">部落格首頁</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="bs-basic-table.html">
+                                    <a href="{{route('admin.attraction.index')}}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Basic Table</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">景點</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+
 
                             </ul>
 

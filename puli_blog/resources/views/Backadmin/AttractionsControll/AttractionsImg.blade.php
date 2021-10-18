@@ -43,8 +43,9 @@
                         <!-- Basic Form Inputs card start -->
                         <div class="card">
                             <div class="card-header">
-                            <h4>{{ $user->name }} 的 {{ $post_id->name }} 圖片庫</h4>
+                            <h4>{{ Auth::user()->name }} 的 {{ $post_id->name }} 圖片庫</h4>
                                 <div class="card-header-right">
+                                    <a href="{{ route('admin.attraction.index') }}" class="btn btn-primary">首頁</a>
                                 <a href="{{ route('admin.AttractionImg.create',['post_id' => $post_id->id]) }}" class="btn btn-primary">+ 新增圖片</a>
                                 </div>
 
@@ -54,7 +55,7 @@
                                         <div class="container">
 
                                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                                @foreach($Imgs as $img)
+                                                @foreach($post_id->Attraction_img as $img)
                                                 <div class="col-sm-6 col-lg-4">
                                                     <div class="card shadow-sm">
                                                     <img src="{{ $img->path_img }}" class="img-thumbnail" alt="..."  width="100%" height="225">
@@ -64,7 +65,11 @@
                                                                 <div class="btn-group">
                                                                     <a href="{{ route('admin.AttractionImg.edit',['post_id' => $post_id->id , 'M_id' => $img->id]) }}" class="btn btn-primary">更新圖片</a>
                                                                 </div>
-                                                                <small class="text-muted">9 mins</small>
+                                                                <form action="{{ route('admin.attractionImg.delete',['post_id' =>$post_id->id , 'M_id' => $img->id ]) }}" method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                        <button type="submit" class="btn btn-danger">刪除</button>
+                                                                    </form>
                                                             </div>
                                                         </div>
                                                     </div>
