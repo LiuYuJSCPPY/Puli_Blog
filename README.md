@@ -64,21 +64,21 @@
   
 ## 操作影片  
   * 前端:
-    * 未登入狀態 :
+    #### 未登入狀態 :
     ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E5%89%8D%E7%AB%AF_%E6%9C%AA%E7%99%BB%E5%85%A5.gif)
     
-    * 已登入狀態 :
+    #### 已登入狀態 :
     ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E5%89%8D%E7%AB%AF_%E7%99%BB%E5%85%A5.gif)
     
     
   * 後端:
-    * 文章:新增、更新、刪除、讀取
+    #### 文章:新增、更新、刪除、讀取
      ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/Attractions_CRUD.gif)
      
-    * 價目表 (AJAX) :新增、更新、刪除、讀取
+    #### 價目表 (AJAX) :新增、更新、刪除、讀取
       ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%83%B9%E7%9B%AE%E8%A1%A8.gif)
       
-    * 圖片 : 新增、更新、刪除、讀取
+    #### 圖片 : 新增、更新、刪除、讀取
       ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/image_CRUD.gif)
 
 ## 環境配置
