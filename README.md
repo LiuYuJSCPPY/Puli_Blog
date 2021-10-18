@@ -63,8 +63,23 @@
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9B%B4%E6%96%B0%E5%9C%96%E7%89%87.PNG)
   
 ## 操作影片  
-  
-
+  * 前端:
+    * 未登入狀態 :
+    ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E5%89%8D%E7%AB%AF_%E6%9C%AA%E7%99%BB%E5%85%A5.gif)
+    
+    * 已登入狀態 :
+    ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E5%89%8D%E7%AB%AF_%E7%99%BB%E5%85%A5.gif)
+    
+    
+  * 後端:
+    * 文章:新增、更新、刪除、讀取
+     ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/Attractions_CRUD.gif)
+     
+    * 價目表 (AJAX) :新增、更新、刪除、讀取
+      ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%83%B9%E7%9B%AE%E8%A1%A8.gif)
+      
+    * 圖片 : 新增、更新、刪除、讀取
+      ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/image_CRUD.gif)
 
 ## 環境配置
 * 語言：PHP ^8.0.3
@@ -73,11 +88,35 @@
 * 資料庫管理工具：MySQL Workbench
 
 
-## 專案啟動方式
-1. 下載專案壓縮檔或使用git clone至個人電腦 
+### 安裝
+
+1. 遠端下載repo
+```
+https://github.com/LiuYuJSCPPY/Laravel_FullCalendar.git
+```
+2. 到 .env 資料庫使用者以及密碼請填寫
 
 ```
-https://github.com/LiuYuJSCPPY/Puli_Blog.git
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravelfullcalendar
+DB_USERNAME=請輸入資料庫使用者
+DB_PASSWORD=請輸入資料庫密碼
+```
+3. 請確保資料庫 schema名稱是否有: puli_blog
+
+4. 請輸入指令 
+
+```
+php artisan migrate
+
+```
+5. 請輸入指令
+
+```
+php artisan serve
+
 ```
 
 
