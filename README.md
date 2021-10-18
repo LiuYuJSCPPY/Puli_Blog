@@ -25,13 +25,20 @@
   
 ## 展示圖片
 * 前端:
-  1. 首頁
+  1. 首頁 : 
+  * 首頁功能:
+     * 分類 : 快速地知道現在公開文章有多少個
+     * 新增文章 : 可以知道現在最新5個文章，也可以點擊圖片或文字到最新文章觀看
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/blog_%E9%A6%96%E9%A0%81.PNG)
   
-  2. 單文章
+  2. 單文章  :
+   * 單文章功能:
+     * 分類 : 快速地知道現在公開文章有多少個
+     * 新增文章 : 可以知道現在最新5個文章，也可以點擊圖片或文字到最新文章觀看
+     * 留言板 : 使用留言板必須會員才可以使用。
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%96%AE%E6%96%87%E7%AB%A0.PNG)
   
-  3. 登入(登入是可以使用留言板，登入會員才可以使用後台)
+  3. 登入(登入是可以使用留言板和後台管理系統)
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2.PNG)
   
   4. 註冊會員
