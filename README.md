@@ -24,8 +24,18 @@
   * 留言 : 使用者可發布該文章的留言。
   
 ## 演示步驟與展示圖片
-* 前端
+* 前端:
   1. 首頁
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/blog_%E9%A6%96%E9%A0%81.PNG)
+  
+  2. 單文章
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%96%AE%E6%96%87%E7%AB%A0.PNG)
+  
+  3. 登入
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2.PNG)
+  
+  4. 註冊會員
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E7%94%B3%E8%AB%8B%E6%9C%83%E5%93%A1.PNG)
 
 ## 環境配置
 * 語言：PHP ^8.0.3
