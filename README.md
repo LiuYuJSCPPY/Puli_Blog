@@ -81,12 +81,17 @@
     #### 圖片 : 新增、更新、刪除、讀取
       ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/image_CRUD.gif)
 
+
 ## 環境配置
 * 語言：PHP ^8.0.3
 * 框架：Laravel ^8.63.0
 * 資料庫：MySQL
 * 資料庫管理工具：MySQL Workbench
 
+
+## 資料表設計
+
+ ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9F%94%E9%87%8C%E8%A7%80%E5%85%89-%E8%B3%87%E6%96%99%E5%BA%AB.drawio.png)
 
 ### 安裝
 
