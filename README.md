@@ -46,10 +46,15 @@
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9F%A5%E7%9C%8B%E5%96%AE%E6%96%87%E7%AB%A0.PNG)
   4. 更新文章
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9B%B4%E6%96%B0%E6%96%87%E7%AB%A0.PNG)
-  5. 後台首頁
-  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%BE%8C%E7%AB%AF%E9%A6%96%E9%A0%81.PNG)
-  6. 後台首頁
-  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%BE%8C%E7%AB%AF%E9%A6%96%E9%A0%81.PNG)
+  5. 價目表
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%83%B9%E7%9B%AE%E8%A1%A8.PNG)
+  6. 圖片庫
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E5%9C%96%E7%89%87%E5%BA%AB.PNG)
+  7. 新增圖片
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%96%B0%E5%A2%9E%E5%9C%96%E7%89%87.PNG)
+  8. 更新圖片
+  ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9B%B4%E6%96%B0%E5%9C%96%E7%89%87.PNG)
+
 
 ## 環境配置
 * 語言：PHP ^8.0.3
