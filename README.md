@@ -109,7 +109,7 @@ https://github.com/LiuYuJSCPPY/Laravel_FullCalendar.git
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravelfullcalendar
+DB_DATABASE=puli_blog
 DB_USERNAME=請輸入資料庫使用者
 DB_PASSWORD=請輸入資料庫密碼
 ```
@@ -132,32 +132,36 @@ php artisan serve
 
 ## 過程中遇到的問題與除錯(debug)
 
-1. 景點的圖片跟景點資料是不一樣，前台抓不到景點的圖片。
+### 1. 前端最新文章圖片抓取不到
 
-* 以下的程式碼是使用DB方式使用，然後在前台頁面是沒有出來圖片的路徑的
-* 
-Laravel 程式碼
+問題 : Laravel 讓資料庫連線與執行查詢語句變得相當簡單DB使用方式比較屬於正規資料庫語法，Eloquent ORM提供資料庫互動。 每個資料庫表會和一個對應的「模型」互動。
+
+* 最新文章圖片抓取不到程式碼
   ```php
   $Post_Attractions = DB::table('attractions')->orderBy('id','DESC')->limit(5)->get();
   ```
   
-前台Blade 程式碼
+* 前台Blade 程式碼
 ```php
   $Post_Attractions->Attraction_img->path_img;
-  因為我使用的是DB方式去抓資料，所以它是抓不到別的資料庫的資料
+  因為使用的是DB方式去抓資料，所以它是抓不到別的資料庫的資料
  ```
  
- 發現問題
- 
- DB是不能使用ORM的方式去抓別的資料的
- 
-  
-3.  問題1 (使用DB是不能使用ORM 的函數):取得最新5個景點的文章，Attractions Model來取得文章的圖片路徑
+解決 : 
 ```php
+  $Post_Attractions = Attractions::orderBy('id','DESC')->limit(5)->get();
+ ```
 
-```
+### 2. git push 發生衝突
 
-4. 無法刪除圖檔
+問題 : github 上有更改的行為導致，git push 時發現是舊版本所以無法更新
+
+![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E9%81%87%E5%88%B0%E7%9A%84%E5%95%8F%E9%A1%8C/Git%20%E6%9B%B4%E6%96%B0%E9%87%8D%E7%96%8A%E5%95%8F%E9%A1%8C.PNG)
+
+#### 解決 : 
+![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E9%81%87%E5%88%B0%E7%9A%84%E5%95%8F%E9%A1%8C/%E8%A7%A3%E6%B1%BAgit%E5%95%8F%E9%A1%8C.PNG)
+
+### 3. 無法刪除圖檔
 * 問題: Laravel 檔案刪除時是需要路徑的，但在資料庫存的是圖檔路徑前面是有加![http://127.0.0.1:8000/storage/](http://127.0.0.1:8000/storage/)路由所以刪除圖檔是找不到檔案路徑。
 
 * 解決: 先抓取資料庫圖檔路由 > 再把路由前面字元給刪掉(http://127.0.0.1:8000/storage/) > 再使用Storage::disk()->delete()
