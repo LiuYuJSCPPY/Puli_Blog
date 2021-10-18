@@ -78,11 +78,20 @@
       ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/image_CRUD.gif)
 
 
-## 環境配置
-* 語言：PHP ^8.0.3
-* 框架：Laravel ^8.63.0
-* 資料庫：MySQL
-* 資料庫管理工具：MySQL Workbench
+## 技術與工具
+* 前端:
+  * HTML5
+  * CSS3
+  * jquery
+  * AJAX
+  
+* 後端:
+   * Laravel:
+     * Authentication
+     * File Storage
+     
+ * 資料庫:
+    * MySQL Workbench
 
 
 ## 資料表設計
