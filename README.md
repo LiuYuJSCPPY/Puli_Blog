@@ -23,7 +23,7 @@
   * 顯示單一文章 : 該文章所有資訊以及圖片。
   * 留言 : 使用者可發布該文章的留言。
   
-## 演示步驟與展示圖片
+## 展示圖片
 * 前端:
   1. 首頁
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/blog_%E9%A6%96%E9%A0%81.PNG)
@@ -54,6 +54,9 @@
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%96%B0%E5%A2%9E%E5%9C%96%E7%89%87.PNG)
   8. 更新圖片
   ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/%E6%9B%B4%E6%96%B0%E5%9C%96%E7%89%87.PNG)
+  
+## 操作影片  
+  
 
 
 ## 環境配置
