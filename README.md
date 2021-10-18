@@ -68,29 +68,15 @@ Laravel 程式碼
 ```
 
 4. 無法刪除圖檔
+* 問題: Laravel 檔案刪除時是需要路徑的，但在資料庫存的是圖檔路徑前面是有加(http://127.0.0.1:8000/storage/)路由所以刪除圖檔是找不到檔案位置。
+
+* 解決: 先抓取資料庫圖檔路由 > 再把路由前面字元給刪掉(http://127.0.0.1:8000/storage/) > 再使用Storage::disk()->delete()
  
-  * 在Laravel 圖檔刪除使用方法
-  ```PHP
-  use Illuminate\Support\Facades\Storage;
-
-  Storage::delete('file.jpg');
-
-  Storage::delete(['file.jpg', 'file2.jpg']);
-
-  Storage::disk('s3')->delete('path/file.jpg');
   
-  ```
-  但是我在資料庫存圖檔名稱是有附加路由的所在使用 Storage::disk 的時候是沒辦法的
-  
-
-
-  解決的方法: 先抓取資料庫圖檔路由 > 再把路由前面字元給刪掉(http://127.0.0.1:8000/storage/) > 再使用Storage::disk()->delete()
-  
-  前面字元刪掉的方法 : substr ( 字串, 起始位置, 長度 )。
+  前面字元刪掉的方法 : substr ()。
   
   ```PHP
-  
-  
+    substr ( 字串, 起始位置, 長度 )
   
   ```
 
