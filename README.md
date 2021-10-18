@@ -1,11 +1,7 @@
 # 埔里觀光網站
 
 
-
-## Live demo
-
-
-
+ ![image](https://github.com/LiuYuJSCPPY/Puli_Blog/blob/master/blog_%E9%A6%96%E9%A0%81.PNG)
 
 
 ## 功能
